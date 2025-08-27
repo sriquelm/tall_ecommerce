@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Facades\Cart as CartService;
 use App\Models\Transaction;
+use App\Models\State;
+use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 use Facades\App\Services\CouponService;
+use Transbank\Webpay\WebpayPlus\Transaction as WebpayTransaction; // primary class
+use Transbank\Webpay\Options; // correct Options class for SDK 5.x
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Contracts\Auth\PasswordBroker;
@@ -34,17 +38,17 @@ class Checkout extends Component
 
     public $registration = true;
     public $email;
-    public $address1;
-    public $address2;
+    public $address;
     public $city;
+    public $states = [];
+    public $cities = [];
     public $country;
     public $phone;
     public $firstname;
     public $lastname;
     public $state;
-    public $postcode;
     public $delivery_method = 'standard';
-    public $payment_method = 'stripe';
+    public $payment_method = 'webpay';
     public $grand_total = 0;
 
     protected $newUserCreated = false;
@@ -99,16 +103,14 @@ class Checkout extends Component
             ],
             'firstname' => 'required|min:3|max:100',
             'lastname' => 'nullable|min:3|max:100',
-            'address1' => 'required|string',
-            'address2' => 'nullable|string',
-            'city' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|exists:cities,id',
             'country' => 'required|string',
             'phone' => [
-                'required',
-                Rule::unique('customers')->ignore($user?->customer?->id),
+                'nullable',
+                Rule::unique('customers', 'phone')->ignore($user?->customer?->id, 'id'),
             ],
-            'state' => 'nullable|string',
-            'postcode' => 'nullable|string',
+            'state' => 'required|exists:states,id',
         ];
     }
 
@@ -123,6 +125,10 @@ class Checkout extends Component
 
         if ($name === 'promo') {
             $this->validateOnly($name);
+        }
+
+        if ($name === 'phone' && $this->phone) {
+            $this->phone = preg_replace('/\D+/', '', $this->phone);
         }
 
         if ($name === 'delivery_method') {
@@ -151,6 +157,14 @@ class Checkout extends Component
         $this->addCoupon(CartService::coupon());
         $this->adjustGrandTotal();
         $this->currency = CartService::getCurrency();
+        // Default country for shipping
+        if (!$this->country) {
+            $this->country = 'Chile';
+        }
+        $this->states = State::where('active', true)->orderBy('name')->get();
+        if ($this->state) {
+            $this->cities = City::where('state_id', $this->state)->where('active', true)->orderBy('name')->get();
+        }
 
         if (Auth::check()) {
             $user = Auth::user();
@@ -159,20 +173,27 @@ class Checkout extends Component
 
             $user->load('customer', 'customer.address');
 
-            if ($user->customer->exists()) {
-                $customer = $user->customer;
+            $customer = $user->customer; // may be null
+
+            if ($customer) {
                 $this->fill([
                     'firstname' => $customer->firstname,
                     'lastname' => $customer->lastname,
                     'phone' => $customer->phone,
                 ]);
-            }
 
-            if (!$customer->address->isEmpty()) {
-                $this->addresses = $customer->address;
-                $this->add_new_address = false;
+                if ($customer->address->isNotEmpty()) {
+                    $this->addresses = $customer->address;
+                    $this->add_new_address = false;
+                }
             }
         }
+    }
+
+    public function updatedState($value)
+    {
+        $this->cities = City::where('state_id', $value)->where('active', true)->orderBy('name')->get();
+        $this->city = null;
     }
 
     public function render()
@@ -243,6 +264,12 @@ class Checkout extends Component
         DB::beginTransaction();
 
         try {
+            // Normalize phone before any validation
+            if ($this->phone) {
+                $this->phone = preg_replace('/\D+/', '', $this->phone);
+            }
+
+            // Validation is handled conditionally below per flow (guest/auth, new/existing address)
             if (Auth::check()) {
                 $user = Auth::user();
             } else {
@@ -267,26 +294,29 @@ class Checkout extends Component
 
             // if customer wants to add new address
             if ($this->add_new_address) {
-                $this->validateOnly('address_line_1');
+                // field is named 'address' in rules/properties
+                $this->validateOnly('address');
                 $this->validateOnly('city');
                 $this->validateOnly('state');
                 $this->validateOnly('country');
-                $this->validateOnly('phone');
                 $address =  Address::create([
                     'customer_id' => $customer->id,
-                    'address_line_1' => $this->address1,
-                    'address_line_2' => $this->address2,
+                    'address_line' => $this->address,
                     'city' => $this->city,
                     'country' => $this->country,
                     'phone' => $this->phone,
                     'state' => $this->state,
-                    'zip_code' => $this->postcode,
                 ]);
                 // if add_new_address is false and the selected address has value
             } else {
                 $address = $this->selected_address
                     ? $this->addresses->firstWhere('id', $this->selected_address)
                     : $customer->defaultAddress;
+                if (!$address) {
+                    throw \Illuminate\Validation\ValidationException::withMessages([
+                        'selected_address' => __('validation.required'),
+                    ]);
+                }
             }
 
 
@@ -325,8 +355,21 @@ class Checkout extends Component
 
             $this->clearCheckout();
 
-            if ($this->payment_method === 'stripe') {
-                $this->createIntent($order);
+            // Force Webpay as the only payment method
+            $this->payment_method = 'webpay';
+
+            // Commit DB BEFORE calling external API, so Order/Customer persist even if SDK fails
+            DB::commit();
+
+            if ($this->payment_method === 'webpay') {
+                try {
+                    $response = $this->full_checkout($order);
+                    // Redirect to dedicated route that renders POST form to Webpay
+                    return redirect()->route('webpay.redirect', ['code' => $this->transaction->code]);
+                } catch (\Throwable $e) {
+                    Log::error('Webpay create failed: '.$e->getMessage());
+                    return redirect()->route('checkout.cancel');
+                }
             }
 
             Notification::make()
@@ -335,26 +378,33 @@ class Checkout extends Component
                 ->send();
 
             $this->new_order_number = $order->order_number;
+            $orderNumber = $order->order_number;
             $this->tracking_id = $order->tracking_id;
+        } catch (\Illuminate\Validation\ValidationException $ve) {
+            DB::rollBack();
+            throw $ve; // Let Livewire show field errors instead of redirecting
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::alert($th->getMessage(), [$th]);
+            return redirect()->route('checkout.cancel');
         }
 
+        // In non-webpay flow (not used), commit here
         DB::commit();
 
         if ($this->newUserCreated && $this->registration) {
             $this->sendReset($this->email);
         }
 
-        if ($this->transaction) {
+        // For Webpay we already redirected earlier
+        if ($this->transaction && $this->payment_method !== 'webpay') {
             return redirect(route('checkout.payment', ['code' => $this->transaction->code]));
-        } else {
-            $route = Auth::check()
-                ? route('order.success', ['order' => $this->new_order_number])
-                : route('order.confirmed', ['order' => $this->tracking_id]);
-            return redirect($route);
         }
+
+        $route = Auth::check()
+            ? route('order.success', ['order' => $orderNumber ?? $this->new_order_number])
+            : route('order.confirmed', ['tracking' => $this->tracking_id]);
+        return redirect($route);
     }
 
     protected function clearCheckout()
@@ -387,76 +437,51 @@ class Checkout extends Component
         $this->sendingResetLinkStatus = $status;
     }
 
-    protected function full_checkout()
+    protected function full_checkout($order)
     {
-        \Stripe\Stripe::setApiKey(config('extra.stripe_secret'));
-        $lineItems = [];
-
+        // Transbank Webpay Plus transaction creation
         $this->currency = CartService::getCurrency();
 
-        $this->content->each(function ($item) {
-            $lineItems[] = [
-                'price_data' => [
-                    'currency' => $this->currency,
-                    'product_data' => [
-                        'name' => $item['name'],
-                        // 'images' => [$item['thumb']]
-                    ],
-                    'tax_behavior' => 'exclusive',
-                    'unit_amount' => $item['price'] * 100,
-                ],
-                'quantity' => $item['quantity'],
-            ];
-        });
+        // Webpay Plus only supports CLP/UF amounts without decimals
+        $amount = round($this->grand_total);
 
-        $shipping_options = [
-            'shipping_rate_data' => [
-                'fixed_amount' => ['amount' => 0, 'currency' => $this->currency],
-                'display_name' => 'Free shipping',
-                'tax_behavior' => 'exclusive',
-                'tax_code' => 'txcd_92010001',
-                'delivery_estimate' => [
-                    'minimum' => ['unit' => 'business_day', 'value' => 5],
-                    'maximum' => ['unit' => 'business_day', 'value' => 7],
-                ],
-            ],
-        ];
+        // Configure credentials from env
+        $commerceCode = '597055555532'; // integration commerce code default
+        $apiKey = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'; // required for SDK 5.x
+        $environment = 'TEST'; // 'TEST' or 'LIVE'
 
-        $session = \Stripe\Checkout\Session::create([
-            'shipping_address_collection' => ['allowed_countries' => ['US', 'CA']],
-            'shipping_options' => $shipping_options,
-            'line_items' => $lineItems,
-            'mode' => 'payment',
-            'automatic_tax' => ['enabled' => true],
-            'success_url' => route('checkout.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-            'cancel_url' => route('checkout.cancel', [], true),
+        if (!$apiKey) {
+            throw new \RuntimeException('Missing TBK_API_KEY in .env. Please set your Transbank integration API key.');
+        }
+
+        // Build Transaction using the correct Options class expected by SDK 5.x
+        $options = new Options($commerceCode, $apiKey, $environment);
+        $transaction = new WebpayTransaction($options);
+
+        // Create transaction
+        $response = $transaction->create(
+            buyOrder: Str::uuid()->toString(),
+            sessionId: session()->getId(),
+            amount: $amount,
+            returnUrl: route('checkout.success', [], true)
+        );
+
+        // Persist token in Transaction model and link to order now
+        $this->transaction = Transaction::create([
+            'order_id' => $order->id,
+            'customer_id' => Auth::id() ? Auth::user()->customer?->id : null,
+            'code' => $response->getToken(),
+            'client_secret' => $response->getUrl(),
+            'amount' => $amount,
+            'currency' => $this->currency->code,
         ]);
 
-        return $session;
+        return $response; // contains token and url to redirect
     }
 
     protected function createIntent($order)
     {
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-        $paymentIntent = \Stripe\PaymentIntent::create([
-            'amount' => $order->total * 100,
-            'currency' => $order->currency,
-            'automatic_payment_methods' => [
-                'enabled' => true,
-            ],
-        ]);
-
-        $transaction = Transaction::create([
-            'order_id' => $order->id,
-            'customer_id' => $order->customer_id,
-            'code' => $paymentIntent->id,
-            'client_secret' => $paymentIntent->client_secret,
-            'amount' => $paymentIntent->amount,
-            'currency' => $paymentIntent->currency,
-        ]);
-
-        $this->transaction = $transaction;
+        // Deprecated for Webpay flow.
 
         $this->paymentIntentCreated = true;
     }

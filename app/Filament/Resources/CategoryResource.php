@@ -20,13 +20,16 @@ class CategoryResource extends Resource
 
     public static function getTranslatableLocales(): array
     {
-        return ['en', 'hu'];
+        return ['es'];
     }
 
     protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
-    protected static ?string $navigationGroup = 'Shop';
+    protected static ?string $navigationGroup = 'Tienda';
+    protected static ?string $navigationLabel = 'Categorías';
+    protected static ?string $modelLabel = 'Categoría';
+    protected static ?string $pluralModelLabel = 'Categorías';
 
     public static function form(Form $form): Form
     {

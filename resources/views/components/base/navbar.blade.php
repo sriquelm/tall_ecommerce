@@ -331,9 +331,10 @@
                 </div>
 
                 <!-- Flyout menus -->
-                <div class="hidden lg:ml-8 lg:block lg:self-stretch">
+                <div class=" lg:ml-8 lg:block lg:self-stretch">
                     <div class="flex h-full space-x-8">
-                        <div class="flex" x-data="{ open: false, focus: false }" @keydown.escape="open=!open">
+                            @include('components.base.categories-menu')
+                        <div class="flex" x-data="{ open: false, focus: false }" x-show="false" @keydown.escape="open=!open">
                             <div class="relative flex">
                                 <button type="button" class="relative z-10 flex items-center pt-px -mb-px text-sm font-medium text-gray-700 transition-colors duration-200 ease-out border-b-2 border-transparent dark:text-gray-100 hover:text-gray-800" :class="{ 'border-indigo-600 text-indigo-600': open, 'border-transparent text-gray-700 hover:text-gray-800': !(open) }" @click="open=!open" @mousedown="if (open) $event.preventDefault()" aria-expanded="false" :aria-expanded="open.toString()">Women</button>
                             </div>
@@ -486,7 +487,7 @@
 
                         </div>
 
-                        <div class="flex" x-data="{ open: false, focus: false }" @keydown.escape="open=!open">
+                        <div class="flex" x-data="{ open: false, focus: false }" x-show="false" @keydown.escape="open=!open">
                             <div class="relative flex">
                                 <button type="button" class="relative z-10 flex items-center pt-px -mb-px text-sm font-medium text-gray-700 transition-colors duration-200 ease-out border-b-2 border-transparent dark:text-gray-100 hover:text-gray-800" :class="{ 'border-indigo-600 text-indigo-600': open, 'border-transparent text-gray-700 hover:text-gray-800': !(open) }" x-on:click="open=!open" @mousedown="if (open) $event.preventDefault()" aria-expanded="false" :aria-expanded="open.toString()">Men</button>
                             </div>
@@ -638,7 +639,7 @@
                 </div>
 
                 <div class="flex items-center ml-auto">
-
+                <div class="hidden">
                     <button type="button" x-bind:class="darkMode ? 'bg-indigo-500' : 'bg-gray-200'" x-on:click="darkMode = !darkMode" class="relative inline-flex flex-shrink-0 h-6 mr-2 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" role="switch" aria-checked="false">
                         <span class="sr-only">Dark mode toggle</span>
                         <span x-bind:class="darkMode ? 'translate-x-5 bg-gray-700' : 'translate-x-0 bg-white dark:bg-gray-800'" class="relative inline-block w-5 h-5 transition duration-200 ease-in-out transform rounded-full shadow pointer-events-none ring-0">
@@ -667,6 +668,7 @@
                                         <span class="sr-only">, change currency</span>
                                     </a> -->
                     </div>
+                </div>
 
                     <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:ml-6">
                         @auth

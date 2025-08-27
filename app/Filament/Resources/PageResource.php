@@ -31,6 +31,10 @@ use RalphJSmit\Filament\SEO\SEO;
 
 class PageResource extends Resource
 {
+    /**
+     * Override default slug to use /pages in admin panel.
+     */
+    protected static ?string $slug = 'pages';
     public static function getRecordRouteKeyName(): ?string
     {
         return 'id';

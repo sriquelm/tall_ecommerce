@@ -18,15 +18,11 @@ class AddressFactory extends Factory
     {
         return [
             'type',
-            'address_line_1',
-            'address_line_2',
+            'address_line',
             'city',
             'state',
-            'zip_code',
             'country',
             'phone',
-            'latitude',
-            'longitude',
             'customer_id',
         ];
     }

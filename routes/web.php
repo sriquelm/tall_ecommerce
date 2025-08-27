@@ -16,7 +16,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    // 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeCookieRedirect', 'localeViewPath']
 ], function () {
     Route::get('/', function () {
         // session()->flash('flash.banner', 'Get a huge discount of up to 80% on all items!');
@@ -29,14 +29,21 @@ Route::group([
     });
 
     Route::get('/payment/{code}', App\Http\Livewire\Payment::class)->name('checkout.payment');
-    Route::get('/payment-success', App\Http\Livewire\Shop\PaymentSuccess::class)->name('checkout.success');
+    Route::get('/webpay/redirect/{code}', [App\Http\Controllers\WebpayController::class, 'redirect'])->name('webpay.redirect');
+    Route::get('/payment-success', [App\Http\Controllers\PaymentController::class, 'success'])->name('checkout.success');
     Route::get('/order-success/{order}', App\Http\Livewire\Shop\OrderSuccess::class)->name('order.success');
     Route::get('/payment-canceled', [App\Http\Controllers\PaymentController::class, 'canceled'])->name('checkout.cancel');
 
 
     Route::get('/product/{product}', App\Http\Livewire\ProductView::class)->name('product.view');
     Route::get('/checkout', App\Http\Livewire\Checkout::class)->name('shop.checkout');
-    Route::get('/order-confirmed', fn () => view('order.confirmed'))->name('order.confirmed');
+    Route::get('/order-confirmed/{tracking?}', function(?string $tracking = null){
+        if(!$tracking){
+            return redirect()->route('shop.index');
+        }
+        $order = App\Models\Order::where('tracking_id', $tracking)->firstOrFail();
+        return view('order.confirmed', compact('order'));
+    })->name('order.confirmed');
 
     Route::get('/page/{filamentPage}', [FilamentPageController::class, 'show']);
     Route::get('/shop', fn () => view('shop.index'))->name('shop.index');

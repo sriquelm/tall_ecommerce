@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
             CurrencySeeder::class,
             ProductSeeder::class,
             VariantSeeder::class,
-            CouponSeeder::class
+            CouponSeeder::class,
+            StateSeeder::class,
+            CitySeeder::class,
         ]);
     }
 }

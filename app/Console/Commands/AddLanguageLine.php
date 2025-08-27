@@ -7,7 +7,7 @@ use Spatie\TranslationLoader\LanguageLine;
 
 class AddLanguageLine extends Command
 {
-    protected $signature = 'new:lang {--en= : English translation} {--hu= : Hungarian translation}';
+    protected $signature = 'new:lang {--es= : Spanish translation}';
 
     protected $description = 'Add a new language line';
 
@@ -19,12 +19,10 @@ class AddLanguageLine extends Command
         $group = $this->ask('Enter the group name');
         $key = $this->ask('Enter the key name');
 
-        $en = $this->option('en') ?? $this->ask('Enter the English translation');
-        $hu = $this->option('hu') ?? $this->ask('Enter the Hungarian translation');
+        $es = $this->option('es') ?? $this->ask('Enter the Spanish translation');
 
         $textArray = [
-            'en' => $en,
-            'hu' => $hu,
+            'es' => $es,
         ];
 
         LanguageLine::create([

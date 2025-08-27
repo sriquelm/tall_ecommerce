@@ -40,8 +40,8 @@
                         <span class="flex flex-1">
                             <span class="flex flex-col">
                                 <span id="delivery-method-0-label" class="block text-sm font-medium text-gray-900 capitalize">Address</span>
-                                <span id="description-0" class="mt-1 text-sm text-gray-500"> {{"{$address->address_line_1}, {$address->address_line_2}"}}</span>
-                                <span id="description-1" class="mt-1 text-sm text-gray-500"> {{ "{$address->city}, {$address->state}, {$address->zip_code}" }}</span>
+                                <span id="description-0" class="mt-1 text-sm text-gray-500"> {{ $address->address_line }}</span>
+                                <span id="description-1" class="mt-1 text-sm text-gray-500"> {{ "{$address->city}, {$address->state}" }}</span>
                                 <span id="description-2" class="mt-1 text-sm text-gray-500"> {{ $address->country }}</span>
                             </span>
                         </span>
@@ -60,26 +60,29 @@
                 <x-form.input name="lastname" label="{{__('form.lastname')}}" autocomplete="family-name" />
 
                 <div class="sm:col-span-2">
-                    <x-form.input name="address1" label="{{__('form.address')}}" autocomplete="street-address" />
+                    <x-form.input name="address" label="{{__('form.address')}}" autocomplete="street-address" />
                 </div>
 
-                <div class="sm:col-span-2">
-                    <x-form.input name="address2" label="{{ __('form.apartment') }}" />
-                </div>
-
-                <x-form.input name="city" label="{{__('form.city')}}" />
-
-                <x-form.dropdown name="country" label="{{__('form.country')}}">
-                    <option value="">{{__('checkout.select_country')}}</option>
-                    @foreach (['Hungary','United States','Bangladesh','Canada', 'Mexico'] as $country)
-                    <option value="{{$country}}">{{$country}}</option>
+                <x-form.dropdown name="state" label="{{__('form.state')}}" wire:model="state">
+                    <option value="">{{__('checkout.select_state')}}</option>
+                    @foreach($states as $s)
+                        <option value="{{$s->id}}">{{$s->name}}</option>
                     @endforeach
                 </x-form.dropdown>
 
-
-
-                <x-form.input name="state" label="{{__('form.state')}}" />
-                <x-form.input name="postcode" label="{{__('form.postal_code')}}" />
+                <x-form.dropdown name="city" label="{{__('form.city')}}" wire:model="city">
+                    <option value="">{{__('checkout.select_city')}}</option>
+                    @foreach($cities as $c)
+                        <option value="{{$c->id}}">{{$c->name}}</option>
+                    @endforeach
+                </x-form.dropdown>
+                <input type="hidden" name="country" wire:model="country" value="Chile">
+                <!--<x-form.dropdown name="country" label="{{__('form.country')}}">
+                    <option value="">{{__('checkout.select_country')}}</option>
+                    @foreach (['Chile'] as $country)
+                    <option value="{{$country}}">{{$country}}</option>
+                    @endforeach
+                </x-form.dropdown>-->
 
                 <div class="sm:col-span-2">
                     <x-form.input id="phone" name="phone" label="{{__('form.phone')}}" autocomplete="tel" />
@@ -121,78 +124,15 @@
             </fieldset>
         </div>
 
-        <!-- Payment -->
+        <!-- Payment (fixed to Webpay) -->
         <div class="pt-10 mt-10 border-t border-gray-200 dark:border-gray-400">
             <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{__('checkout.payment')}}</h2>
 
-            <fieldset class="mt-4">
-                <legend class="sr-only">Payment type</legend>
-                <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-                    <!-- <div class="flex items-center">
-                            <input id="creditcard" value="creditcard" name="payment-type" wire:model.lazy="payment_method" type="radio" checked class="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
-                            <label for="creditcard" class="block ml-3 text-sm font-medium text-gray-700 dark:text-white">{{__('checkout.credit_card')}}</label>
-                        </div> -->
-
-                    <div class="flex items-center">
-                        <input id="stripe" value="stripe" name="payment-type" wire:model.lazy="payment_method" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
-                        <label for="stripe" class="block ml-3 text-sm font-medium text-gray-700 dark:text-white">{{__('checkout.e_pay')}}</label>
-                    </div>
-
-
-                    <div class="flex items-center">
-                        <input id="cod" value="cod" name="payment-type" wire:model.lazy="payment_method" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
-                        <label for="cod" class="block ml-3 text-sm font-medium text-gray-700 dark:text-white">{{__('checkout.cash_on_delivery')}}</label>
-                    </div>
-                </div>
-            </fieldset>
-
             <div class="grid grid-cols-4 mt-6 gap-y-6 gap-x-4">
-                @if ($payment_method==='creditcard')
-                <div class="col-span-4">
-                    <label for="card-number" class="block text-sm font-medium text-gray-700 dark:text-white">{{__('form.card_number')}}</label>
-                    <div class="mt-1">
-                        <input type="text" id="card-number" name="card-number" autocomplete="cc-number" class="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
+                <div class="flex col-span-4 items-center">
+                    <span class="inline-flex items-center px-3 py-1 text-sm font-medium rounded bg-teal-100 text-teal-800">Webpay Plus</span>
                 </div>
-
-                <div class="col-span-4">
-                    <label for="name-on-card" class="block text-sm font-medium text-gray-700 dark:text-white">{{__('form.name_on_card')}}</label>
-                    <div class="mt-1">
-                        <input type="text" id="name-on-card" name="name-on-card" autocomplete="cc-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-                </div>
-
-                <div class="col-span-3">
-                    <label for="expiration-date" class="block text-sm font-medium text-gray-700 dark:text-white">{{ __('form.expiration') }}</label>
-                    <div class="mt-1">
-                        <input type="text" name="expiration-date" id="expiration-date" autocomplete="cc-exp" class="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-                </div>
-                <div class="col-span-1">
-                    <label for="cvc" class="block text-sm font-medium text-gray-700 dark:text-white">CVC</label>
-                    <div class="mt-1">
-                        <input type="text" name="cvc" id="cvc" autocomplete="csc" class="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-                </div>
-
-                @elseif ($payment_method === 'stripe')
-                <div class="flex col-span-4">
-                    <!-- <button class="flex items-center justify-center px-4 py-2 mr-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 paypal-btn">
-                            {{__('checkout.pay_with_paypal')}}
-                        </button> -->
-                    <!-- <button class="flex items-center justify-center px-4 py-2 bg-[#6772E5] text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 stripe-btn">
-                            {{__('checkout.pay_with_stripe')}}
-                        </button> -->
-                    <img class="h-28" src="{{ asset('images/stripe.webp') }}" alt="stripe payment" />
-                </div>
-                @else
-                <div class="flex justify-center col-span-4">
-                    <img class="h-32" src="{{asset('images/cash-on-delivery.webp')}}" alt="cash on delivery" loading="lazy">
-                </div>
-                @endif
-                <!-- <p class="text-base text-gray-400">If you choose epay/stripe then there will be a payment form otherwise Confirm your order</p> -->
             </div>
-
         </div>
 </div>
 

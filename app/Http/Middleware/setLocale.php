@@ -16,7 +16,7 @@ class setLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        app()->setLocale($request->segment(1) ?? config('app.fallback_locale', 'en'));
+        app()->setLocale($request->segment(1) ?? config('app.fallback_locale', 'es'));
         URL::defaults(['locale' => $request->segment(1)]);
         return $next($request);
     }

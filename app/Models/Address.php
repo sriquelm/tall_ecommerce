@@ -11,15 +11,11 @@ class Address extends Model
 
     protected $fillable = [
         'type',
-        'address_line_1',
-        'address_line_2',
+        'address_line',
         'city',
         'state',
-        'zip_code',
         'country',
         'phone',
-        'latitude',
-        'longitude',
         'customer_id',
         'is_default',
     ];
@@ -36,11 +32,9 @@ class Address extends Model
     public function getFullAddressAttribute()
     {
         $addressParts = [
-            $this->address_line_1,
-            $this->address_line_2,
+            $this->address_line,
             $this->city,
             $this->state,
-            $this->zip_code,
             $this->country,
         ];
 

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 
 class CurrencySeeder extends Seeder
 {
-    protected function get_rate($from, $amount = 1, $to = 'HUF', $bypass = false)
+    /*protected function get_rate($from, $amount = 1, $to = 'HUF', $bypass = false)
     {
         $cacheKey = "{$from}_{$to}_{$amount}";
         $cachePath = storage_path("app/{$cacheKey}.json");
@@ -20,7 +20,7 @@ class CurrencySeeder extends Seeder
         } else {
             $response = Http::acceptJson()
                 ->withHeaders([
-                    "apikey" => env('CURRENCY_EXCHANGE_API_KEY')
+                    "apikey" => "JFql0BSsajHPmliJ671Q1nZJbCBTOe69"
                 ])
                 ->get("http://api.apilayer.com/exchangerates_data/convert", [
                     'to' => $to,
@@ -32,8 +32,12 @@ class CurrencySeeder extends Seeder
             file_put_contents($cachePath, json_encode($response));
         }
 
+        if (! isset($response['result'])) {
+            throw new \RuntimeException('Exchange-rate API error: ' . json_encode($response));
+        }
+
         return $response['result'];
-    }
+    }*/
 
 
     public function run(): void
@@ -48,14 +52,14 @@ class CurrencySeeder extends Seeder
         //     "default" => true,
         // ]);
         Currency::create([
-            "code" => 'HUF',
-            "sign" => 'Ft',
-            "name" => 'Hungarian Forint',
+            "code" => 'CLP',
+            "sign" => '$',
+            "name" => 'Chilean Peso',
             "exchange_rate" => 1,
             "default" => true,
         ]);
 
-        $currencies = [
+        /*$currencies = [
             [
                 "code" => 'USD',
                 "sign" => '$',
@@ -82,9 +86,18 @@ class CurrencySeeder extends Seeder
             Currency::create(
                 array_merge(
                     $currency,
-                    ['exchange_rate' => $this->get_rate($currency['code'], true)]
+                    ['exchange_rate' => 1]
                 )
             );
         }
+
+        foreach ($currencies as $currency) {
+            Currency::create(
+                array_merge(
+                    $currency,
+                    ['exchange_rate' => $this->get_rate($currency['code'], 1, 'HUF', true)]
+                )
+            );
+        }*/
     }
 }

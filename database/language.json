@@ -1,293 +1,275 @@
 {
     "cart": {
-        "shopping_cart": {
-            "en": "Shopping Cart",
-            "hu": "Bevásárlókocsi"
-        },
-        "checkout": {
-            "en": "Checkout",
-            "hu": "Pénztár"
-        },
-        "subtotal": {
-            "en": "Subtotal",
-            "hu": "Részösszeg"
-        },
-        "total": {
-            "en": "Total"
-        },
-        "shipping_at_checkout": {
-            "en": "Shipping and taxes calculated at checkout",
-            "hu": "A kiszállítás és az adók a pénztárnál számítva"
-        },
-        "apply": {
-            "en": "Apply",
-            "hu": "Alkalmaz"
-        },
-        "applied_successfully": {
-            "en": "Applied Successfully"
-        },
-        "cart_empty": {
-            "en": "Your shopping cart is empty"
-        },
-        "not_added_yet": {
-            "en": "Looks like you haven't added anything to your cart yet"
-        },
-        "apply_promo": {
-            "en": "Apply Promo",
-            "hu": "Alkalmaz Promóciós"
-        },
-        "promocode": {
-            "en": "promocode",
-            "hu": "promóciós kód"
-        },
-        "remove_product": {
-            "en": "Remove Product From Cart",
-            "hu": "Távolítsa el a terméket a kosárból"
-        },
-        "promo_applied": {
-            "en": "Promo Code Applied Successfully"
-        },
-        "promo_not_valid": {
-            "en": "Sorry! Code is not Valid or Expired"
-        }
+      "shopping_cart": {
+        "es": "Carro de Compras"
+      },
+      "checkout": {
+        "es": "Pagar"
+      },
+      "subtotal": {
+        "es": "Subtotal"
+      },
+      "total": {
+        "es": "Total"
+      },
+      "shipping_at_checkout": {
+        "es": "Envío e impuestos calculados al pagar"
+      },
+      "apply": {
+        "es": "Aplicar"
+      },
+      "applied_successfully": {
+        "es": "Aplicado con éxito"
+      },
+      "cart_empty": {
+        "es": "Tu carro de compras está vacío"
+      },
+      "not_added_yet": {
+        "es": "Parece que aún no has agregado nada a tu carro"
+      },
+      "apply_promo": {
+        "es": "Aplicar Promoción"
+      },
+      "promocode": {
+        "es": "código promocional"
+      },
+      "remove_product": {
+        "es": "Eliminar producto del carro"
+      },
+      "promo_applied": {
+        "es": "Código promocional aplicado con éxito"
+      },
+      "promo_not_valid": {
+        "es": "¡Lo sentimos! El código no es válido o ha expirado"
+      }
     },
     "checkout": {
-        "order_summary": {
-            "en": "Order summary"
-        },
-        "contact_info": {
-            "en": "Contact Information"
-        },
-        "shipping_info": {
-            "en": "Shipping Information"
-        },
-        "keep_info": {
-            "en": "Keep This Information for Registration"
-        },
-        "delivery_method": {
-            "en": "Delivery method"
-        },
-        "payment": {
-            "en": "Payment"
-        },
-        "pay_with_paypal": {
-            "en": "Pay with PayPal"
-        },
-        "pay_with_stripe": {
-            "en": "Pay with Stripe"
-        },
-        "cash_on_delivery": {
-            "en": "Cash on Delivery"
-        },
-        "credit_card": {
-            "en": "Credit Card"
-        },
-        "e_pay": {
-            "en": "E-Pay"
-        },
-        "business_days": {
-            "en": ":days business days"
-        },
-        "store_pickup": {
-            "en": "Store Pickup"
-        },
-        "standard": {
-            "en": "Standard"
-        },
-        "express": {
-            "en": "Express"
-        },
-        "confirm_order": {
-            "en": "Confirm Order"
-        },
-        "tax": {
-            "en": "Tax"
-        },
-        "discount": {
-            "en": "Discount"
-        },
-        "shipping": {
-            "en": "Shipping"
-        },
-        "continue_shopping": {
-            "en": "Continue Shopping",
-            "hu": "Vásárlás folytatása"
-        },
-        "select_country": {
-            "en": "Select Country",
-            "hu": null
-        }
+      "order_summary": {
+        "es": "Resumen del pedido"
+      },
+      "contact_info": {
+        "es": "Información de contacto"
+      },
+      "shipping_info": {
+        "es": "Información de envío"
+      },
+      "keep_info": {
+        "es": "Guardar esta información para el registro"
+      },
+      "delivery_method": {
+        "es": "Método de entrega"
+      },
+      "payment": {
+        "es": "Pago"
+      },
+      "pay_with_paypal": {
+        "es": "Pagar con PayPal"
+      },
+      "pay_with_stripe": {
+        "es": "Pagar con Stripe"
+      },
+      "pay_with_webpay": {
+        "es": "Pagar con Webpay"
+      },
+      "cash_on_delivery": {
+        "es": "Pago contra entrega"
+      },
+      "credit_card": {
+        "es": "Tarjeta de crédito"
+      },
+      "e_pay": {
+        "es": "Pago electrónico"
+      },
+      "business_days": {
+        "es": ":days días hábiles"
+      },
+      "store_pickup": {
+        "es": "Retiro en tienda"
+      },
+      "standard": {
+        "es": "Estándar"
+      },
+      "express": {
+        "es": "Exprés"
+      },
+      "confirm_order": {
+        "es": "Confirmar pedido"
+      },
+      "tax": {
+        "es": "Impuesto"
+      },
+      "discount": {
+        "es": "Descuento"
+      },
+      "shipping": {
+        "es": "Envío"
+      },
+      "continue_shopping": {
+        "es": "Seguir comprando"
+      },
+      "select_state": {
+        "es": "Seleccionar región"
+      },
+      "select_city": {
+        "es": "Seleccionar comuna"
+      },
+      "select_country": {
+        "es": "Seleccionar país"
+      }
     },
     "form": {
-        "email": {
-            "en": "Email"
-        },
-        "firstname": {
-            "en": "First name"
-        },
-        "lastname": {
-            "en": "Last name"
-        },
-        "address": {
-            "en": "Address"
-        },
-        "apartment": {
-            "en": "Apartment, suite, etc."
-        },
-        "city": {
-            "en": "City"
-        },
-        "country": {
-            "en": "Country"
-        },
-        "state": {
-            "en": "State \/ Province"
-        },
-        "postal_code": {
-            "en": "Postal code"
-        },
-        "phone": {
-            "en": "Phone"
-        },
-        "expiration": {
-            "en": "Expiration date (MM\/YY)"
-        },
-        "name_on_card": {
-            "en": "Name on Card"
-        },
-        "card_number": {
-            "en": "Card Number"
-        }
+      "email": {
+        "es": "Correo electrónico"
+      },
+      "firstname": {
+        "es": "Nombre"
+      },
+      "lastname": {
+        "es": "Apellido"
+      },
+      "address": {
+        "es": "Dirección"
+      },
+      "apartment": {
+        "es": "Departamento, oficina, etc."
+      },
+      "city": {
+        "es": "Ciudad"
+      },
+      "country": {
+        "es": "País"
+      },
+      "state": {
+        "es": "Región / Provincia"
+      },
+      "postal_code": {
+        "es": "Código postal"
+      },
+      "phone": {
+        "es": "Teléfono"
+      },
+      "expiration": {
+        "es": "Fecha de vencimiento (MM/AA)"
+      },
+      "name_on_card": {
+        "es": "Nombre en la tarjeta"
+      },
+      "card_number": {
+        "es": "Número de tarjeta"
+      }
     },
     "product": {
-        "based_on_reviews": {
-            "en": "Based on :count reviews"
-        },
-        "local_tax_included": {
-            "en": "Local taxes included (where applicable)"
-        },
-        "see_all_review": {
-            "en": "{0} See all review |{1,*} See all :count reviews"
-        },
-        "sizing_info": {
-            "en": "See Sizing Info"
-        },
-        "add_to_cart": {
-            "en": "Add to Cart"
-        },
-        "description": {
-            "en": "Description"
-        },
-        "customer_reviews": {
-            "en": "Customer Reviews"
-        },
-        "share_thoughts": {
-            "en": "Share your thoughts"
-        },
-        "write_review": {
-            "en": "Write a review"
-        },
-        "if_you_used": {
-            "en": "If you’ve used this product, share your thoughts with other customers"
-        },
-        "add_to_favourite": {
-            "en": "Add to Favourites"
-        },
-        "customers_also": {
-            "en": "Customers also bought"
-        }
+      "based_on_reviews": {
+        "es": "Basado en :count reseñas"
+      },
+      "local_tax_included": {
+        "es": "Impuestos locales incluidos (cuando corresponda)"
+      },
+      "see_all_review": {
+        "es": "{0} Ver todas las reseñas |{1,*} Ver las :count reseñas"
+      },
+      "sizing_info": {
+        "es": "Ver guía de tallas"
+      },
+      "add_to_cart": {
+        "es": "Agregar al carro"
+      },
+      "description": {
+        "es": "Descripción"
+      },
+      "customer_reviews": {
+        "es": "Reseñas de clientes"
+      },
+      "share_thoughts": {
+        "es": "Comparte tu opinión"
+      },
+      "write_review": {
+        "es": "Escribir una reseña"
+      },
+      "if_you_used": {
+        "es": "Si has usado este producto, comparte tu experiencia con otros clientes"
+      },
+      "add_to_favourite": {
+        "es": "Agregar a favoritos"
+      },
+      "customers_also": {
+        "es": "Los clientes también compraron"
+      }
     },
     "common": {
-        "save": {
-            "en": "Save",
-            "hu": "Megment"
-        },
-        "off": {
-            "en": "Off"
-        },
-        "sales": {
-            "en": "Sales"
-        },
-        "yes": {
-            "en": "Yes",
-            "hu": "Igen"
-        },
-        "no": {
-            "en": "No",
-            "hu": "Nem"
-        },
-        "are_you_sure": {
-            "en": "Are you Sure?",
-            "hu": "Biztos vagy ebben?"
-        },
-        "search": {
-            "en": "Search",
-            "hu": "Keresés"
-        },
-        "color": {
-            "en": "Color",
-            "hu": "Szín"
-        },
-        "size": {
-            "en": "Size",
-            "hu": "Méret"
-        },
-        "get_free_delivery_over": {
-            "en": "Get free delivery on orders over",
-            "hu": "Több mint rendelés esetén ingyenes kiszállítás"
-        },
-        "shop_now": {
-            "en": "Shop Now",
-            "hu": "Vásárolj most"
-        },
-        "signup_for_newsletter": {
-            "en": "Sign up for our newsletter"
-        },
-        "signup": {
-            "en": "Sign up for our newsletter"
-        },
-        "trending_product": {
-            "en": "Trending Products",
-            "hu": "Felkapott termékek"
-        }
+      "save": {
+        "es": "Guardar"
+      },
+      "off": {
+        "es": "Descuento"
+      },
+      "sales": {
+        "es": "Ofertas"
+      },
+      "yes": {
+        "es": "Sí"
+      },
+      "no": {
+        "es": "No"
+      },
+      "are_you_sure": {
+        "es": "¿Estás seguro?"
+      },
+      "search": {
+        "es": "Buscar"
+      },
+      "color": {
+        "es": "Color"
+      },
+      "size": {
+        "es": "Talla"
+      },
+      "get_free_delivery_over": {
+        "es": "Obtén envío gratis en pedidos superiores a"
+      },
+      "shop_now": {
+        "es": "Comprar ahora"
+      },
+      "signup_for_newsletter": {
+        "es": "Suscríbete a nuestro boletín"
+      },
+      "signup": {
+        "es": "Suscribirse"
+      },
+      "trending_product": {
+        "es": "Productos en tendencia"
+      }
     },
     "validation": {
-        "promo": {
-            "en": "The Promocode is not correct",
-            "hu": "A promóciós kód nem megfelelő"
-        },
-        "required": {
-            "en": "This is a required field"
-        },
-        "unique": {
-            "en": "The :attribute has already been taken.",
-            "hu": "The :attribute has already been taken."
-        }
+      "promo": {
+        "es": "El código promocional no es correcto"
+      },
+      "required": {
+        "es": "Este campo es obligatorio"
+      },
+      "unique": {
+        "es": "El :attribute ya ha sido registrado."
+      }
     },
     "auth": {
-        "login": {
-            "en": "Log In",
-            "hu": null
-        },
-        "password": {
-            "en": "Password",
-            "hu": null
-        },
-        "remember_me": {
-            "en": "Remember Me",
-            "hu": null
-        },
-        "forgot_password": {
-            "en": "Forgot your password?",
-            "hu": "Elfelejtette a jelszavát?"
-        },
-        "dont_have_account": {
-            "en": "Don't have account yet?",
-            "hu": "Még nincs fiókod?"
-        },
-        "signup": {
-            "en": "Sign Up",
-            "hu": "Regisztrálj"
-        }
+      "login": {
+        "es": "Iniciar sesión"
+      },
+      "password": {
+        "es": "Contraseña"
+      },
+      "remember_me": {
+        "es": "Recuérdame"
+      },
+      "forgot_password": {
+        "es": "¿Olvidaste tu contraseña?"
+      },
+      "dont_have_account": {
+        "es": "¿Aún no tienes cuenta?"
+      },
+      "signup": {
+        "es": "Regístrate"
+      }
     }
-}
+  }
+  

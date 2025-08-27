@@ -15,15 +15,11 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('type')->default('primary')->nullable();
-            $table->string('address_line_1')->nullable();
-            $table->string('address_line_2')->nullable();
+            $table->string('address_line')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->string('zip_code')->nullable();
             $table->string('country')->nullable();
             $table->string('phone')->nullable();
-            $table->float('latitude')->nullable();
-            $table->float('longitude')->nullable();
             $table->boolean('is_default')->default(0);
             $table->foreignIdFor(Customer::class, 'customer_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

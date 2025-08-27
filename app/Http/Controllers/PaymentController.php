@@ -4,44 +4,61 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Transbank\Webpay\WebpayPlus\Transaction as WebpayTransaction;
+use App\Models\Transaction as PaymentTransaction;
 
 class PaymentController extends Controller
 {
-    public function successd(Request $request)
+    public function success(Request $request)
     {
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $sessionId = $request->get('session_id');
-
-        try {
-            $session = \Stripe\Checkout\Session::retrieve($sessionId);
-            if (!$session) {
-                abort(404);
-            }
-            $customer = \Stripe\Customer::retrieve($session->customer);
-
-            $order = Order::where('stripe_session', $session->id)->first();
-            if (!$order) {
-                abort(404);
-            }
-            if ($order->status === 'unpaid') {
-                $order->status = 'paid';
-                $order->save();
-            }
-
-            return view('shop.checkout-success', compact('customer'));
-        } catch (\Exception $e) {
-            abort(404);
+        $token = $request->get('token_ws');
+        if (!$token) {
+            return redirect()->route('checkout.cancel');
         }
-    }
 
-    public function success()
-    {
-        return view('shop.checkout-success');
+        $webpay = new WebpayTransaction();
+        try {
+            $response = $webpay->commit($token);
+        } catch (\Throwable $e) {
+            return redirect()->route('checkout.cancel');
+        }
+
+        // Update transaction & order
+        $transaction = PaymentTransaction::where('code', $token)->first();
+        if ($transaction) {
+            $transaction->status = $response->getStatus();
+            $transaction->result = $response;
+            $transaction->order()?->update(['payment_status' => 'paid']);
+            $transaction->save();
+        }
+
+        return redirect()->route('order.success', ['order' => $transaction?->order?->order_number]);
     }
 
     public function canceled(Request $request)
     {
-        dd($request->all());
+        $token = $request->get('token_ws');
+        if (!$token) {
+            return redirect()->route('checkout.cancel');
+        }
+
+        $webpay = new WebpayTransaction();
+        try {
+            $response = $webpay->commit($token);
+        } catch (\Throwable $e) {
+            return redirect()->route('checkout.cancel');
+        }
+
+        // Update transaction & order
+        $transaction = PaymentTransaction::where('code', $token)->first();
+        if ($transaction) {
+            $transaction->status = $response->getStatus();
+            $transaction->result = $response;
+            $transaction->order()?->update(['payment_status' => 'canceled']);
+            $transaction->save();
+        }
+
+        return redirect()->route('checkout.cancel');
         return view('shop.checkout-cancel');
     }
 }

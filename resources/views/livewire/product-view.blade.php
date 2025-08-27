@@ -135,7 +135,7 @@
     <!-- Descriptions -->
     <section aria-labelledby="product-description">
         <div class="mt-10">
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-50">Description</h2>
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-50">{{__('product.description')}}</h2>
             <div class="mt-4 text-base prose-sm prose text-gray-600 dark:text-gray-100">
                 <p>{!! $product->description !!}</p>
             </div>

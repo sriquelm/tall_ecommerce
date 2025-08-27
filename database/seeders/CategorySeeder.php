@@ -33,32 +33,7 @@ class CategorySeeder extends Seeder
                 "Eclectic Wall Decor",
                 "Mid-century Modern Wall Art",
                 "Inspirational Wall Art",
-            ],
-            'Room Decor' => [
-                'Abstract Wall Art',
-                'Artistic Wall Decor',
-                'Housewarming Gift',
-                'Spiritual Wall Decor',
-                'Modern Wood Wall Art',
-                'Bedroom Wall Art',
-                "Outdoor Wall Decor",
-                "Farmhouse Wall Decor",
-                'Kitchen Wall Decor',
-            ],
-            'Handmade' => [
-                'Wood Wall Panels',
-                'Kitty Decor',
-                'Creativite Wall Art',
-                'Elegant Wall Art',
-            ],
-            'Custom' => [
-                'Natural Wood',
-                'Laser Cut Wood Art',
-                'Birch Plywood',
-                'Multi Colored',
-                "Custom Wall Art",
-                '3D Wood Art',
-            ],
+            ]
 
         ];
 

@@ -46,9 +46,9 @@ return [
         //'en-AU'       => ['name' => 'Australian English',     'script' => 'Latn', 'native' => 'Australian English', 'regional' => 'en_AU', 'flag'=>''],
         //'en-GB'       => ['name' => 'British English',        'script' => 'Latn', 'native' => 'British English', 'regional' => 'en_GB', 'flag'=>''],
         //'en-CA'       => ['name' => 'Canadian English',       'script' => 'Latn', 'native' => 'Canadian English', 'regional' => 'en_CA', 'flag'=>''],
-        'en'            => ['name' => 'English',                'script' => 'Latn', 'native' => 'U.S. English', 'regional' => 'en_US', 'flag' => ''],
+        //'en'            => ['name' => 'English',                'script' => 'Latn', 'native' => 'U.S. English', 'regional' => 'en_US', 'flag' => ''],
         //'en-US'       => ['name' => 'U.S. English',           'script' => 'Latn', 'native' => 'U.S. English', 'regional' => 'en_US', 'flag'=>''],
-        // 'es'         => ['name' => 'Spanish',                'script' => 'Latn', 'native' => 'español', 'regional' => 'es_ES', 'flag'=>''],
+        'es'         => ['name' => 'Spanish',                'script' => 'Latn', 'native' => 'español', 'regional' => 'es_ES', 'flag'=>''],
         //'eo'          => ['name' => 'Esperanto',              'script' => 'Latn', 'native' => 'esperanto', 'regional' => '', 'flag'=>''],
         //'eu'          => ['name' => 'Basque',                 'script' => 'Latn', 'native' => 'euskara', 'regional' => 'eu_ES', 'flag'=>''],
         //'ewo'         => ['name' => 'Ewondo',                 'script' => 'Latn', 'native' => 'ewondo', 'regional' => '', 'flag'=>''],
@@ -125,7 +125,7 @@ return [
         //'lg'          => ['name' => 'Ganda',                  'script' => 'Latn', 'native' => 'Luganda', 'regional' => 'lg_UG', 'flag'=>''],
         //'luy'         => ['name' => 'Oluluyia',               'script' => 'Latn', 'native' => 'Luluhia', 'regional' => '', 'flag'=>''],
         //'lb'          => ['name' => 'Luxembourgish',          'script' => 'Latn', 'native' => 'Lëtzebuergesch', 'regional' => 'lb_LU', 'flag'=>''],
-        'hu'          => ['name' => 'Hungarian',              'script' => 'Latn', 'native' => 'magyar', 'regional' => 'hu_HU', 'flag' => '🇭🇺'],
+        //'hu'          => ['name' => 'Hungarian',              'script' => 'Latn', 'native' => 'magyar', 'regional' => 'hu_HU', 'flag' => '🇭🇺'],
         //'mgh'         => ['name' => 'Makhuwa-Meetto',         'script' => 'Latn', 'native' => 'Makua', 'regional' => '', 'flag'=>''],
         //'mg'          => ['name' => 'Malagasy',               'script' => 'Latn', 'native' => 'Malagasy', 'regional' => 'mg_MG', 'flag'=>''],
         //'mt'          => ['name' => 'Maltese',                'script' => 'Latn', 'native' => 'Malti', 'regional' => 'mt_MT', 'flag'=>''],
@@ -327,12 +327,12 @@ return [
     // If `useAcceptLanguageHeader` is true, then the first time
     // the locale will be determined from browser and redirect to that language.
     // After that, `hideDefaultLocaleInURL` behaves as usual.
-    'hideDefaultLocaleInURL' => false,
+    'hideDefaultLocaleInURL' => true,
 
     // If you want to display the locales in particular order in the language selector you should write the order here.
     //CAUTION: Please consider using the appropriate locale code otherwise it will not work
     //Example: 'localesOrder' => ['es','en'],
-    'localesOrder' => [],
+    'localesOrder' => ['es'],
 
     //  If you want to use custom lang url segments like 'at' instead of 'de-AT', you can use the mapping to tallow the LanguageNegotiator to assign the descired locales based on HTTP Accept Language Header. For example you want ot use 'at', so map HTTP Accept Language Header 'de-AT' to 'at' (['de-AT' => 'at']).
     'localesMapping' => [],
