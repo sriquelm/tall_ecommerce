@@ -12,7 +12,8 @@ class OrderSuccess extends Component
 
     public function mount($order)
     {
-        $order = Order::with('items')->firstWhere('order_number', $order);
+        $order = Order::with(['items', 'items.variant', 'items.variant.product', 'customer'])
+                     ->firstWhere('order_number', $order);
         if (!$order) {
             abort(404, 'Specified Order Not Found');
         }

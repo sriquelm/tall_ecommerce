@@ -18,6 +18,7 @@ use App\Models\Transaction;
 use App\Models\State;
 use App\Models\City;
 use Illuminate\Support\Facades\Auth;
+use App\Services\TransbankService;
 use Facades\App\Services\CouponService;
 use Transbank\Webpay\WebpayPlus\Transaction as WebpayTransaction; // primary class
 use Transbank\Webpay\Options; // correct Options class for SDK 5.x
@@ -58,6 +59,7 @@ class Checkout extends Component
     public $addresses;
     public $selected_address;
     public $add_new_address = true;
+    public $showLoginSuggestion = false;
 
 
     public $transaction;
@@ -71,7 +73,7 @@ class Checkout extends Component
         'store_pickup' => 0,
     ];
 
-    public $taxrate = 27;
+    public $taxrate = 19;
     public $taxable = 0;
 
     protected $listeners = ['addToCart' => 'updateCart', 'couponCleared', 'couponApplyEvent'];
@@ -93,14 +95,16 @@ class Checkout extends Component
     protected function rules()
     {
         $user = Auth::user();
+        $emailRules = ['required', 'email', 'max:255'];
+        
+        // Only validate uniqueness for authenticated users
+        if ($user) {
+            $emailRules[] = Rule::unique('users')->ignore($user->id);
+        }
+        
         return  [
             'promo' => 'nullable|alpha_num:ascii|min:5',
-            'email' => [
-                'required',
-                'email',
-                'max:255',
-                Rule::unique('users')->ignore($user?->id),
-            ],
+            'email' => $emailRules,
             'firstname' => 'required|min:3|max:100',
             'lastname' => 'nullable|min:3|max:100',
             'address' => 'required|string',
@@ -127,6 +131,10 @@ class Checkout extends Component
             $this->validateOnly($name);
         }
 
+        if ($name === 'email') {
+            $this->checkEmailForLogin();
+        }
+
         if ($name === 'phone' && $this->phone) {
             $this->phone = preg_replace('/\D+/', '', $this->phone);
         }
@@ -134,6 +142,22 @@ class Checkout extends Component
         if ($name === 'delivery_method') {
             $this->adjustGrandTotal();
         }
+    }
+
+    public function checkEmailForLogin()
+    {
+        // Only check if user is not authenticated and email is valid
+        if (!Auth::check() && $this->email && filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $existingUser = User::where('email', $this->email)->first();
+            $this->showLoginSuggestion = (bool) $existingUser;
+        } else {
+            $this->showLoginSuggestion = false;
+        }
+    }
+
+    public function dismissLoginSuggestion()
+    {
+        $this->showLoginSuggestion = false;
     }
 
     public function adjustGrandTotal()
@@ -274,13 +298,36 @@ class Checkout extends Component
                 $user = Auth::user();
             } else {
                 $this->validateOnly('email');
-                $user =  User::create(['name' => $this->firstname, 'email' => $this->email, 'password' => Str::password(10)]);
-                $this->newUserCreated = true;
+                
+                // Check if user already exists with this email
+                $user = User::where('email', $this->email)->first();
+                
+                if (!$user) {
+                    // Create new user if doesn't exist
+                    $user = User::create([
+                        'name' => $this->firstname, 
+                        'email' => $this->email, 
+                        'password' => Str::password(10)
+                    ]);
+                    $this->newUserCreated = true;
+                }
             }
 
 
             if ($user->customer()->exists()) {
                 $customer = $user->customer;
+                
+                // Update customer info with current form data if provided
+                if ($this->firstname) {
+                    $customer->firstname = $this->firstname;
+                }
+                if ($this->lastname) {
+                    $customer->lastname = $this->lastname;
+                }
+                if ($this->phone) {
+                    $customer->phone = $this->phone;
+                }
+                $customer->save();
             } else {
                 $this->validateOnly('firstname');
                 $this->validateOnly('lastname');
@@ -363,7 +410,7 @@ class Checkout extends Component
 
             if ($this->payment_method === 'webpay') {
                 try {
-                    $response = $this->full_checkout($order);
+                    $response = $this->full_checkout($order, $customer);
                     // Redirect to dedicated route that renders POST form to Webpay
                     return redirect()->route('webpay.redirect', ['code' => $this->transaction->code]);
                 } catch (\Throwable $e) {
@@ -437,7 +484,7 @@ class Checkout extends Component
         $this->sendingResetLinkStatus = $status;
     }
 
-    protected function full_checkout($order)
+    protected function full_checkout($order, $customer)
     {
         // Transbank Webpay Plus transaction creation
         $this->currency = CartService::getCurrency();
@@ -445,22 +492,13 @@ class Checkout extends Component
         // Webpay Plus only supports CLP/UF amounts without decimals
         $amount = round($this->grand_total);
 
-        // Configure credentials from env
-        $commerceCode = '597055555532'; // integration commerce code default
-        $apiKey = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'; // required for SDK 5.x
-        $environment = 'TEST'; // 'TEST' or 'LIVE'
-
-        if (!$apiKey) {
-            throw new \RuntimeException('Missing TBK_API_KEY in .env. Please set your Transbank integration API key.');
-        }
-
-        // Build Transaction using the correct Options class expected by SDK 5.x
-        $options = new Options($commerceCode, $apiKey, $environment);
-        $transaction = new WebpayTransaction($options);
+        // Use TransbankService to get properly configured transaction
+        $transbankService = new TransbankService();
+        $transaction = $transbankService->makeTransaction();
 
         // Create transaction
         $response = $transaction->create(
-            buyOrder: Str::uuid()->toString(),
+            buyOrder: $order->order_number,
             sessionId: session()->getId(),
             amount: $amount,
             returnUrl: route('checkout.success', [], true)
@@ -469,7 +507,7 @@ class Checkout extends Component
         // Persist token in Transaction model and link to order now
         $this->transaction = Transaction::create([
             'order_id' => $order->id,
-            'customer_id' => Auth::id() ? Auth::user()->customer?->id : null,
+            'customer_id' => $customer->id,
             'code' => $response->getToken(),
             'client_secret' => $response->getUrl(),
             'amount' => $amount,

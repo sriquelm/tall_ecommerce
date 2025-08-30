@@ -60,7 +60,7 @@
                                 </p>
                             </div>
                             <div class="flex items-center justify-between flex-1 text-sm">
-                                <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Qty 1</p>
+                                <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Qty {{ $item->quantity }}</p>
                             </div>
                         </div>
                     </li>
@@ -78,9 +78,8 @@
                         <dt class="font-medium text-gray-900 dark:text-white">Shipping address</dt>
                         <dd class="mt-2 text-gray-700 dark:text-gray-200">
                             <address class="not-italic">
-                                <span class="block">Kristin Watson</span>
-                                <span class="block">7363 Cynthia Pass</span>
-                                <span class="block">Toronto, ON N3Y 4H8</span>
+                                <span class="block">{{ $order->customer->firstname }} {{ $order->customer->lastname }}</span>
+                                <span class="block">{{ $order->shipping_address }}</span>
                             </address>
                         </dd>
                     </div>
@@ -91,14 +90,22 @@
                     <div>
                         <dt class="font-medium text-gray-900 dark:text-white">Payment method</dt>
                         <dd class="mt-2 text-gray-700 dark:text-gray-200">
-                            <p>Stripe/COD</p>
+                            <p>{{ ucfirst($order->payment_method) }}</p>
                         </dd>
                     </div>
                     <div>
                         <dt class="font-medium text-gray-900 dark:text-white">Shipping method</dt>
                         <dd class="mt-2 text-gray-700 dark:text-gray-200">
-                            <p>DHL</p>
-                            <p>Takes up to 3 working days</p>
+                            <p>{{ ucfirst(str_replace('_', ' ', $order->shipping_method)) }}</p>
+                            <p>
+                                @if($order->shipping_method == 'express')
+                                    Express delivery - 1-2 business days
+                                @elseif($order->shipping_method == 'store_pickup')
+                                    Store pickup - Ready in 24 hours
+                                @else
+                                    Standard delivery - 3-5 business days
+                                @endif
+                            </p>
                         </dd>
                     </div>
                 </dl>

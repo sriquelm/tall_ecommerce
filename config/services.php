@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'transbank' => [
+        'commerce_code' => env('TBK_COMMERCE_CODE'),
+        'api_key' => env('TBK_API_KEY'),
+        'environment' => env('TBK_INTEGRATION_TYPE', 'TEST'),
+    ],
+
 ];

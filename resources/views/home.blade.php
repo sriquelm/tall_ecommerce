@@ -52,11 +52,11 @@
 
     <main>
         <!-- Category section -->
-        <section aria-labelledby="category-heading" class="bg-white dark:bg-slate-800">
+        <section aria-labelledby="category-heading" class="bg-white dark:bg-slate-800 hidden">
             <div class="px-4 py-12 mx-auto max-w-7xl sm:py-16 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-baseline sm:justify-between">
                     <h2 id="category-heading" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Shop by Category</h2>
-                    <a href="#" class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-50 dark:hover:text-indigo-200 sm:block">
+                    <a href="{{ route('categories.index') }}" class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-50 dark:hover:text-indigo-200 sm:block">
                         Browse all categories
                         <span aria-hidden="true"> →</span>
                     </a>
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="mt-6 sm:hidden">
-                    <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-50 dark:hover:text-indigo-200">
+                    <a href="{{ route('categories.index') }}" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-50 dark:hover:text-indigo-200">
                         Browse all categories
                         <span aria-hidden="true"> →</span>
                     </a>
@@ -119,11 +119,25 @@
             </div>
         </section>
 
+        <!-- Long-term thinking -->
+        <section aria-labelledby="cause-heading">
+            <div class="relative px-6 py-32 bg-indigo-600 sm:py-40 sm:px-12 lg:px-16">
+                <div class="absolute inset-0 overflow-hidden hidden">
+                    <img src="{{asset('images/london-wall-art-wide.avif')}}" alt="" class="object-cover object-center w-full h-full">
+                </div>
+                <div aria-hidden="true" class="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
+                <div class="relative flex flex-col items-center max-w-3xl mx-auto text-center">
+                    <h2 id="cause-heading" class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Long-term thinking</h2>
+                    <p class="mt-3 text-xl text-white">We're committed to responsible, sustainable, and ethical manufacturing. Our small-scale approach allows us to focus on quality and reduce our impact. We're doing our best to delay the inevitable heat-death of the universe.</p>
+                    <a href="#" class="block w-full px-8 py-3 mt-8 text-base font-medium text-gray-900 bg-white border border-transparent rounded-md dark:text-white dark:bg-gray-800 hover:bg-gray-100 sm:w-auto">Read our story</a>
+                </div>
+            </div>
+        </section>
 
         <div class="max-w-2xl px-4 py-10 mx-auto -mt-4 sm:pb-16 sm:px-6 lg:max-w-7xl lg:px-8">
             <div class="sm:flex sm:items-baseline sm:justify-between">
                 <h2 id="category-heading" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Trending Products</h2>
-                <a href="#" class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-50 dark:hover:text-indigo-200 sm:block">
+                <a href="{{ route('products.index') }}" class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-50 dark:hover:text-indigo-200 sm:block">
                     Browse all products
                     <span aria-hidden="true"> →</span>
                 </a>
@@ -135,20 +149,7 @@
             </div>
         </div>
 
-        <!-- Long-term thinking -->
-        <section aria-labelledby="cause-heading">
-            <div class="relative px-6 py-32 bg-gray-800 sm:py-40 sm:px-12 lg:px-16">
-                <div class="absolute inset-0 overflow-hidden">
-                    <img src="{{asset('images/london-wall-art-wide.avif')}}" alt="" class="object-cover object-center w-full h-full">
-                </div>
-                <div aria-hidden="true" class="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
-                <div class="relative flex flex-col items-center max-w-3xl mx-auto text-center">
-                    <h2 id="cause-heading" class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Long-term thinking</h2>
-                    <p class="mt-3 text-xl text-white">We're committed to responsible, sustainable, and ethical manufacturing. Our small-scale approach allows us to focus on quality and reduce our impact. We're doing our best to delay the inevitable heat-death of the universe.</p>
-                    <a href="#" class="block w-full px-8 py-3 mt-8 text-base font-medium text-gray-900 bg-white border border-transparent rounded-md dark:text-white dark:bg-gray-800 hover:bg-gray-100 sm:w-auto">Read our story</a>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Favorites section -->
         <section aria-labelledby="favorites-heading">
@@ -205,8 +206,8 @@
                 </div>
 
                 <div class="mt-6 sm:hidden">
-                    <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-50 dark:hover:text-indigo-200">
-                        Browse all favorites
+                    <a href="{{ route('products.index') }}" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-50 dark:hover:text-indigo-200">
+                        Browse all products
                         <span aria-hidden="true"> →</span>
                     </a>
                 </div>

@@ -49,4 +49,10 @@ class Cart extends Model
     {
         $this->items()->firstWhere('variant_id', $variant_id)->decrement('quantity');
     }
+
+    public function total()
+{
+    return $this->items->sum(fn($item) => $item->subtotal());
+}
+
 }

@@ -19,8 +19,8 @@ class VariantFactory extends Factory
         $price = rand(50, 500);
         return [
             // 'purchase_price' => $price,
-            'sale_price' => $price + rand(200, 300),
-            'offer_price' => $price + rand(80, 150),
+            'sale_price' => $price + rand(20, 30)*1000,
+            'offer_price' => $price + rand(8, 15)*1000,
             'shipping_weight' => rand(1, 10),
             'stock' => mt_rand(10, 100),
         ];

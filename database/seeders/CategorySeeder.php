@@ -19,22 +19,10 @@ class CategorySeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $data = [
-            'Special Collection' => [
-                "Rustic Wall Art",
-                "Vintage Wall Decor",
-                "Geometric Wall Art",
-                "Botanical Wall Decor",
-                "Boho Wall Art",
-                "Coastal Wall Decor",
-                "Typography Wall Art",
-                "Minimalist Wall Art",
-                "Contemporary Wall Decor",
-                "Sculptural Wall Art",
-                "Eclectic Wall Decor",
-                "Mid-century Modern Wall Art",
-                "Inspirational Wall Art",
+            'Tienda' => [
+                "Libros",
+                "Recorridos",
             ]
-
         ];
 
         foreach ($data as $key => $value) {

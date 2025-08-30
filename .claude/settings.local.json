@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan transbank:test-config:*)",
+      "Bash(php artisan config:clear:*)",
+      "Bash(php artisan:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(composer show:*)",
+      "WebFetch(domain:www.transbankdevelopers.cl)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

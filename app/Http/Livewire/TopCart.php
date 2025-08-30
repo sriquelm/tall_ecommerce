@@ -29,6 +29,9 @@ class TopCart extends Component
             ->success()
             ->send();
         $this->updateCount();
+        
+        // Emit JavaScript event to open cart menu
+        $this->dispatchBrowserEvent('openCartMenu');
     }
 
     public function render()

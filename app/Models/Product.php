@@ -14,11 +14,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use App\Traits\HasActive;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes, HasSlug, InteractsWithMedia;
+    use HasFactory, SoftDeletes, HasSlug, InteractsWithMedia, HasActive;
     use HasSEO;
 
     public function getDynamicSEOData(): SEOData

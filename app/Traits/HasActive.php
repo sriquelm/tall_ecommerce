@@ -6,13 +6,19 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait HasActive
 {
-    public function scopeActive(Builder $query): void
+    /**
+     * Scope a query to only include active models.
+     */
+    public function scopeActive(Builder $query): Builder
     {
-        $query->whereActive(true);
+        return $query->whereActive(true);
     }
 
-    public function scopeInactive(Builder $query): void
+    /**
+     * Scope a query to only include inactive models.
+     */
+    public function scopeInactive(Builder $query): Builder
     {
-        $query->whereActive(false);
+        return $query->whereActive(false);
     }
 }

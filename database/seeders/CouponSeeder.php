@@ -16,6 +16,6 @@ class CouponSeeder extends Seeder
     {
         Coupon::truncate();
         Coupon::factory()
-            ->count(10)->create();
+            ->count(2)->create();
     }
 }

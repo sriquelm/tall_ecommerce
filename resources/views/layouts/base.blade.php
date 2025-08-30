@@ -33,7 +33,10 @@
     })">
     <x-top-banner />
 
-    <div x-data="{ open: false , cart:false}" @keydown.window.escape="open = false" class="bg-white dark:bg-gray-800">
+    <div x-data="{ open: false , cart:false}" 
+         @keydown.window.escape="open = false" 
+         @open-cart-menu.window="cart = true"
+         class="bg-white dark:bg-gray-800">
         <x-base.navbar />
         {{ $slot }}
         <!-- px-6 py-4 -->

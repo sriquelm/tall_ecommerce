@@ -35,4 +35,10 @@ class CartItem extends Model
     {
         return $this->hasOneThrough(Product::class, Variant::class);
     }
+
+    public function subtotal()
+    {
+        return $this->price * $this->quantity;
+    }
+
 }
