@@ -373,6 +373,57 @@
       "view_all_results": {
         "es": "Ver todos los resultados para"
       }
+    },
+    "emails": {
+      "verify_email": {
+        "subject": {
+          "es": "Verifica tu dirección de correo electrónico"
+        },
+        "greeting": {
+          "es": "¡Hola!"
+        },
+        "intro": {
+          "es": "Por favor, haz clic en el botón de abajo para verificar tu dirección de correo electrónico."
+        },
+        "action": {
+          "es": "Verificar dirección de correo"
+        },
+        "outro": {
+          "es": "Si no creaste una cuenta, no es necesario realizar ninguna acción."
+        },
+        "trouble_text": {
+          "es": "Si tienes problemas para hacer clic en el botón, copia y pega la siguiente URL en tu navegador web:"
+        },
+        "regards": {
+          "es": "Saludos"
+        },
+        "subcopy_text": {
+          "es": "Si tienes problemas para hacer clic en el botón, copia y pega la siguiente URL en tu navegador web:"
+        }
+      },
+      "reset_password": {
+        "subject": {
+          "es": "Restablecer contraseña"
+        },
+        "greeting": {
+          "es": "¡Hola!"
+        },
+        "intro": {
+          "es": "Recibimos una solicitud de restablecimiento de contraseña para tu cuenta."
+        },
+        "action": {
+          "es": "Restablecer contraseña"
+        },
+        "outro": {
+          "es": "Este enlace de restablecimiento de contraseña expirará en :count minutos. Si no solicitaste un restablecimiento de contraseña, no es necesario realizar ninguna acción."
+        },
+        "trouble_text": {
+          "es": "Si tienes problemas para hacer clic en el botón, copia y pega la siguiente URL en tu navegador web:"
+        },
+        "regards": {
+          "es": "Saludos"
+        }
+      }
     }
   }
   

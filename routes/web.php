@@ -3,6 +3,7 @@
 use Beier\FilamentPages\Http\Controllers\FilamentPageController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WebpayController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -11,7 +12,6 @@ use App\Http\Livewire\Payment;
 use App\Http\Livewire\Checkout;
 use App\Http\Livewire\ProductView;
 use App\Http\Livewire\Shop\OrderSuccess;
-use App\Models\Product;
 use App\Models\Order;
 /*
 |--------------------------------------------------------------------------
@@ -28,15 +28,8 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeCookieRedirect', 'localeViewPath']
 ], function () {
-    Route::get('/', function () {
-        // session()->flash('flash.banner', 'Get a huge discount of up to 80% on all items!');
-        // session()->flash('flash.bannerStyle', 'warning');
-        // \App\Models\Currency::find(1)->update(['default', 1]);
-        $products = Product::with(['featuredImage', 'variant', 'variant.options'])->paginate(15);
-        // dd($products[0]->featuredImage->getResponsiveImageUrls());
-        // dd(asset('images/placeholder-image.webp'));
-        return view('home', compact('products'));
-    })->name('home');
+    
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::get('/payment/{code}', Payment::class)->name('checkout.payment');
     Route::get('/webpay/redirect/{code}', [WebpayController::class, 'redirect'])->name('webpay.redirect');
@@ -48,12 +41,10 @@ Route::group([
     Route::get('/product/{product}', ProductView::class)->name('product.view');
     Route::get('/checkout', Checkout::class)->name('shop.checkout');
     
-    // Product routes
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    Route::get('/products/category/{category}', [ProductController::class, 'category'])->name('products.category');
-    
-    // Category routes
+    // Category and Product routes (unified)
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/products', [CategoryController::class, 'products'])->name('products.index');
+    Route::get('/products/category/{category}', [CategoryController::class, 'category'])->name('products.category');
 
 //    Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'show'])->name('shop.checkout');
 
@@ -66,13 +57,7 @@ Route::group([
     })->name('order.confirmed');
 
     Route::get('/page/{filamentPage}', [FilamentPageController::class, 'show']);
-    Route::get('/shop', function () {
-        $products = Product::with(['featuredImage', 'variant'])
-            ->whereHas('variant')
-            ->active()
-            ->paginate(15);
-        return view('shop.index', compact('products'));
-    })->name('shop.index');
+    Route::get('/shop', [CategoryController::class, 'shop'])->name('shop.index');
     Route::get('/blog', fn () => view('blog.index'))->name('blog.index');
     Route::get('/blog/article', fn () => view('blog.view'))->name('blog.view');
 
