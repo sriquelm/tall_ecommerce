@@ -21,7 +21,7 @@
     @stack('styles')
 </head>
 
-<body class="font-sans antialiased" x-data="{ darkMode: false }" x-init="
+<body class="font-sans antialiased pt-16" x-data="{ darkMode: false }" x-init="
     if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       localStorage.setItem('darkMode', JSON.stringify(true));
     }
@@ -35,13 +35,15 @@
 
     <div x-data="{ open: false , cart:false}" 
          @keydown.window.escape="open = false" 
-         @open-cart-menu.window="cart = true"
-         class="bg-white dark:bg-gray-800">
-        <x-base.navbar />
-        {{ $slot }}
+         @open-cart-menu.window="cart = true">
+    <x-base.navbar />
+
+        <div class="bg-white dark:bg-gray-800">
+            {{ $slot }}
+        </div>
         <!-- px-6 py-4 -->
         <div x-cloak class="relative z-40">
-            <div x-show="cart" x-transition:enter="ease-in-out duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"></div>
+            <div x-show="cart" x-transition:enter="ease-in-out duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 backdrop-blur backdrop-filter bg-opacity-75" x-on:click="cart=false"></div>
             <div :class="cart ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" class="fixed top-0 right-0 z-40 w-full h-full max-w-xs overflow-hidden transition duration-300 transform bg-white border-l border-gray-300 shadow-xl dark:bg-gray-800 dark:border-gray-600">
                 <livewire:cart />
             </div>

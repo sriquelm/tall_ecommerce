@@ -18,14 +18,14 @@
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
             class="absolute inset-x-0 text-sm text-gray-500 bg-white dark:text-gray-400 dark:bg-gray-800 top-full"
             x-ref="panel" @click.away="open = false">
-            <div class="absolute inset-0 bg-white shadow dark:bg-gray-800 top-1/2" aria-hidden="true"></div>
+            <div class="absolute inset-0 bg-white shadow dark:bg-gray-800 top-0" aria-hidden="true"></div>
             <!-- Fake border when menu is open -->
             <div class="absolute inset-0 top-0 h-px px-8 mx-auto max-w-7xl" aria-hidden="true">
                 <div class="w-full h-px transition-colors duration-200 ease-out bg-transparent" :class="{ 'bg-gray-200': open, 'bg-transparent': !(open) }"></div>
             </div>
             <div class="relative">
                 <div class="px-8 mx-auto max-w-7xl">
-                    <div class="grid grid-cols-3 py-16 text-sm gap-y-10 gap-x-8">
+                    <div class="grid grid-cols-3 py-8 text-sm gap-y-10 gap-x-8">
                         <div>
                             <p class="font-medium text-gray-900 dark:text-white">{{ $parent->name }}</p>
                             <ul role="list" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">

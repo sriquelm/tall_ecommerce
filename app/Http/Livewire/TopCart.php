@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Facades\Cart;
 use Livewire\Component;
-use Filament\Notifications\Notification;
 
 class TopCart extends Component
 {
@@ -24,14 +23,10 @@ class TopCart extends Component
     public function addProductToCart($product)
     {
         Cart::add($product, 1);
-        Notification::make()
-            ->title('Product Successfully Added!')
-            ->success()
-            ->send();
         $this->updateCount();
         
         // Emit JavaScript event to open cart menu
-        $this->dispatchBrowserEvent('openCartMenu');
+        $this->dispatchBrowserEvent('open-cart-menu');
     }
 
     public function render()

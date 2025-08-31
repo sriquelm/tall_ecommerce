@@ -117,6 +117,89 @@
         "es": "Seleccionar país"
       }
     },
+    "order": {
+      "preparing_to_ship": {
+        "es": "Preparándose para enviar el"
+      },
+      "order_placed": {
+        "es": "Pedido realizado"
+      },
+      "processing": {
+        "es": "Procesando"
+      },
+      "shipped": {
+        "es": "Enviado"
+      },
+      "delivered": {
+        "es": "Entregado"
+      },
+      "thank_you": {
+        "es": "¡Gracias!"
+      },
+      "we_received_your_order": {
+        "es": "¡Recibimos tu pedido!"
+      },
+      "order_shipped_message": {
+        "es": "Tu pedido #:order_number ha sido enviado y llegará pronto."
+      },
+      "tracking_number": {
+        "es": "Número de seguimiento"
+      },
+      "your_order": {
+        "es": "Tu pedido"
+      },
+      "items": {
+        "es": "Artículos"
+      },
+      "qty": {
+        "es": "Cant."
+      },
+      "your_information": {
+        "es": "Tu información"
+      },
+      "addresses": {
+        "es": "Direcciones"
+      },
+      "shipping_address": {
+        "es": "Dirección de envío"
+      },
+      "payment": {
+        "es": "Pago"
+      },
+      "payment_method": {
+        "es": "Método de pago"
+      },
+      "shipping_method": {
+        "es": "Método de envío"
+      },
+      "express_delivery": {
+        "es": "Entrega exprés - 1-2 días hábiles"
+      },
+      "store_pickup": {
+        "es": "Retiro en tienda - Listo en 24 horas"
+      },
+      "standard_delivery": {
+        "es": "Entrega estándar - 3-5 días hábiles"
+      },
+      "summary": {
+        "es": "Resumen"
+      },
+      "subtotal": {
+        "es": "Subtotal"
+      },
+      "discount": {
+        "es": "Descuento"
+      },
+      "tax": {
+        "es": "Impuesto"
+      },
+      "shipping": {
+        "es": "Envío"
+      },
+      "total": {
+        "es": "Total"
+      }
+    },
     "form": {
       "email": {
         "es": "Correo electrónico"
@@ -269,6 +352,26 @@
       },
       "signup": {
         "es": "Regístrate"
+      }
+    },
+    "search": {
+      "search_products_placeholder": {
+        "es": "Buscar productos..."
+      },
+      "products_found": {
+        "es": "Productos encontrados"
+      },
+      "no_products_found": {
+        "es": "No se encontraron productos con"
+      },
+      "try_another_term": {
+        "es": "Intenta con otro término."
+      },
+      "search_by_description": {
+        "es": "Busca productos por nombre, descripción o SKU."
+      },
+      "view_all_results": {
+        "es": "Ver todos los resultados para"
       }
     }
   }

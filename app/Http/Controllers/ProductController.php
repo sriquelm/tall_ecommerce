@@ -8,12 +8,22 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with(['variant', 'featuredImage'])
+        $query = Product::with(['variant', 'featuredImage'])
             ->whereHas('variant')
-            ->active()
-            ->paginate(12);
+            ->active();
+
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = $request->search;
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'LIKE', '%' . $searchTerm . '%')
+                  ->orWhere('description', 'LIKE', '%' . $searchTerm . '%')
+                  ->orWhere('sku', 'LIKE', '%' . $searchTerm . '%');
+            });
+        }
+
+        $products = $query->paginate(12)->appends($request->query());
 
         return view('products.index', compact('products'));
     }

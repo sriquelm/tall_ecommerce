@@ -1,4 +1,4 @@
-<div>
+<div class="fixed top-0 z-40 w-full">
     <div x-cloak x-show="open" class="relative z-40 lg:hidden" x-ref="dialog" aria-modal="true">
         <div x-show="open" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-black bg-opacity-25"></div>
         <div class="fixed inset-0 z-40 flex ">
@@ -12,7 +12,6 @@
                     </button>
                     <div class="flex">
 
-                        <livewire:language-switcher />
 
                         <a href="#" class="p-2 text-gray-400 hover:text-gray-500 dark:text-gray-400">
                             <span class="sr-only">Search</span>
@@ -23,274 +22,41 @@
                     </div>
                 </div>
 
-                <!-- Links goes here -->
-                <div class="mt-2" x-data="{selected:''}">
-                    <div class="border-b border-gray-200">
-                        <div class="flex px-4 -mb-px space-x-8" aria-orientation="horizontal" role="tablist">
-                            <button id="tabs-1-tab-1" class="flex-1 px-1 py-4 text-base font-medium text-gray-900 border-b-2 border-transparent dark:text-white whitespace-nowrap" :class="{ 'text-indigo-600 border-indigo-600': selected==='woman', 'text-gray-900 dark:text-white border-transparent': !(selected==='') }" aria-controls="tabs-1-panel-1" role="tab" @click="selected='woman'" @keydown="selected=''" :tabindex="selected === 'woman' ? 0 : -1" :aria-selected="selected === 'woman' ? 'true' : 'false'" type="button">Women</button>
-                            <button id="tabs-1-tab-2" class="flex-1 px-1 py-4 text-base font-medium text-gray-900 border-b-2 border-transparent dark:text-white whitespace-nowrap" :class="{ 'text-indigo-600 border-indigo-600': selected==='man', 'text-gray-900 dark:text-white border-transparent': !(selected==='') }" aria-controls="tabs-1-panel-2" role="tab" @click="selected='man'" @keydown="selected=''" :tabindex="selected === 'man' ? 0 : -1" :aria-selected="selected === 'man' ? 'true' : 'false'" type="button">Men</button>
-                        </div>
-                    </div>
-
-
-                    <div id="tabs-1-panel-1" class="px-4 pt-10 pb-8 space-y-10" aria-labelledby="tabs-1-tab-1" x-show="selected==='woman'" role="tabpanel" tabindex="0">
-                        <div class="grid grid-cols-2 gap-x-4">
-                            <div class="relative text-sm group">
-                                <div class="overflow-hidden bg-gray-100 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
-                                    <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg" alt="Models sitting back to back, wearing Basic Tee in black and bone." class="object-cover object-center">
-                                </div>
-                                <a href="#" class="block mt-6 font-medium text-gray-900 dark:text-white">
-                                    <span class="absolute inset-0 z-10" aria-hidden="true"></span>
-                                    New Arrivals
-                                </a>
-                                <p aria-hidden="true" class="mt-1">Shop now</p>
-                            </div>
-
-                            <div class="relative text-sm group">
-                                <div class="overflow-hidden bg-gray-100 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
-                                    <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg" alt="Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees." class="object-cover object-center">
-                                </div>
-                                <a href="#" class="block mt-6 font-medium text-gray-900 dark:text-white">
-                                    <span class="absolute inset-0 z-10" aria-hidden="true"></span>
-                                    Basic Tees
-                                </a>
-                                <p aria-hidden="true" class="mt-1">Shop now</p>
-                            </div>
-
-                        </div>
-
-                        <div>
-                            <p id="women-clothing-heading-mobile" class="font-medium text-gray-900 dark:text-white">Clothing</p>
-                            <ul role="list" aria-labelledby="women-clothing-heading-mobile" class="flex flex-col mt-6 space-y-6">
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Tops</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Dresses</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Pants</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Denim</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Sweaters</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">T-Shirts</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Jackets</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Activewear</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Browse All</a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <div>
-                            <p id="women-accessories-heading-mobile" class="font-medium text-gray-900 dark:text-white">Accessories</p>
-                            <ul role="list" aria-labelledby="women-accessories-heading-mobile" class="flex flex-col mt-6 space-y-6">
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Watches</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Wallets</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Bags</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Sunglasses</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Hats</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Belts</a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <div>
-                            <p id="women-brands-heading-mobile" class="font-medium text-gray-900 dark:text-white">Brands</p>
-                            <ul role="list" aria-labelledby="women-brands-heading-mobile" class="flex flex-col mt-6 space-y-6">
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Full Nelson</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">My Way</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Re-Arranged</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Counterfeit</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Significant Other</a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </div>
-
-                    <div id="tabs-1-panel-2" class="px-4 pt-10 pb-8 space-y-10" aria-labelledby="tabs-1-tab-2" x-show="selected==='man'" role="tabpanel" tabindex="0">
-                        <div class="grid grid-cols-2 gap-x-4">
-
-                            <div class="relative text-sm group">
-                                <div class="overflow-hidden bg-gray-100 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
-                                    <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg" alt="Drawstring top with elastic loop closure and textured interior padding." class="object-cover object-center">
-                                </div>
-                                <a href="#" class="block mt-6 font-medium text-gray-900 dark:text-white">
-                                    <span class="absolute inset-0 z-10" aria-hidden="true"></span>
-                                    New Arrivals
-                                </a>
-                                <p aria-hidden="true" class="mt-1">Shop now</p>
-                            </div>
-
-                            <div class="relative text-sm group">
-                                <div class="overflow-hidden bg-gray-100 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
-                                    <img src="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg" alt="Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt." class="object-cover object-center">
-                                </div>
-                                <a href="#" class="block mt-6 font-medium text-gray-900 dark:text-white">
-                                    <span class="absolute inset-0 z-10" aria-hidden="true"></span>
-                                    Artwork Tees
-                                </a>
-                                <p aria-hidden="true" class="mt-1">Shop now</p>
-                            </div>
-
-                        </div>
-
-                        <div>
-                            <p id="men-clothing-heading-mobile" class="font-medium text-gray-900 dark:text-white">Clothing</p>
-                            <ul role="list" aria-labelledby="men-clothing-heading-mobile" class="flex flex-col mt-6 space-y-6">
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Tops</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Pants</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Sweaters</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">T-Shirts</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Jackets</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Activewear</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Browse All</a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <div>
-                            <p id="men-accessories-heading-mobile" class="font-medium text-gray-900 dark:text-white">Accessories</p>
-                            <ul role="list" aria-labelledby="men-accessories-heading-mobile" class="flex flex-col mt-6 space-y-6">
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Watches</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Wallets</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Bags</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Sunglasses</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Hats</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Belts</a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <div>
-                            <p id="men-brands-heading-mobile" class="font-medium text-gray-900 dark:text-white">Brands</p>
-                            <ul role="list" aria-labelledby="men-brands-heading-mobile" class="flex flex-col mt-6 space-y-6">
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Re-Arranged</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Counterfeit</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">Full Nelson</a>
-                                </li>
-
-                                <li class="flow-root">
-                                    <a href="#" class="block p-2 -m-2 text-gray-500 dark:text-gray-400">My Way</a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
+                <!-- Navigation Links - matches desktop menu -->
                 <div class="px-4 py-6 space-y-6 border-t border-gray-200">
+                    <!-- Categories -->
+                    @php
+                        $parentCategories = \App\Models\Category::with(['children' => function($q){
+                            $q->where('active', 1);
+                        }])->whereNull('parent_id')->where('active', 1)->get();
+                    @endphp
+                    
+                    @foreach($parentCategories as $parent)
+                        <div class="flow-root">
+                            <p class="block p-2 -m-2 font-medium text-gray-900 dark:text-white">{{ $parent->name }}</p>
+                            @if($parent->children->count() > 0)
+                                <div class="ml-4 mt-2 space-y-2">
+                                    @foreach($parent->children as $child)
+                                        <div class="flow-root">
+                                            <a href="{{ route('products.category', $child->slug) }}" class="block p-1 -m-1 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">{{ $child->name }}</a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    @endforeach
 
+                    <!-- Main Navigation -->
                     <div class="flow-root">
-                        <a href="{{ route('products.index') }}" class="block p-2 -m-2 font-medium text-gray-900 dark:text-white">Todos los Productos</a>
+                        <a href="{{ route('shop.index') }}" class="block p-2 -m-2 font-medium text-gray-900 dark:text-white">Shop</a>
                     </div>
 
                     <div class="flow-root">
-                        <a href="{{ route('categories.index') }}" class="block p-2 -m-2 font-medium text-gray-900 dark:text-white">Categorías</a>
+                        <a href="{{ route('blog.index') }}" class="block p-2 -m-2 font-medium text-gray-900 dark:text-white">Blog</a>
+                    </div>
+
+                    <div class="flow-root">
+                        <a href="#" class="block p-2 -m-2 font-medium text-gray-900 dark:text-white">Contact</a>
                     </div>
 
                 </div>
@@ -304,15 +70,21 @@
                     </div>
                 </div>
 
-                <div class="px-4 py-6 border-t border-gray-200">
-                    <livewire:currency-switcher />
+                <div class="px-4 py-6 space-y-6 border-t border-gray-200 hidden">
+                    <!-- Currency and Language Switchers -->
+                    <div class="flow-root">
+                        <livewire:currency-switcher />
+                    </div>
+                    <div class="flow-root">
+                        <livewire:language-switcher />
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <nav aria-label="Top" class="relative z-10 bg-white border-b border-gray-100 dark:bg-gray-800 bg-opacity-90 backdrop-blur-xl backdrop-filter dark:border-gray-600 sticky">
+    <nav aria-label="Top" class="relative z-10 bg-white border-b border-gray-100 dark:bg-gray-800 bg-opacity-90 backdrop-blur-xl backdrop-filter dark:border-gray-600">
         <div class="pl-2 pr-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex items-center h-16">
                 <button type="button" class="p-2 text-gray-400 bg-white rounded-md dark:bg-gray-800 lg:hidden" @click="open = true">
@@ -331,7 +103,7 @@
                 </div>
 
                 <!-- Flyout menus -->
-                <div class=" lg:ml-8 lg:block lg:self-stretch">
+                <div class=" lg:ml-8 lg:block lg:self-stretch hidden lg:flex">
                     <div class="flex h-full space-x-8">
                         @include('components.base.categories-menu')
 
@@ -346,7 +118,7 @@
                 </div>
 
                 <div class="flex items-center ml-auto">
-                <div class="hidden">
+                <div class="flex items-center hidden">
                     <button type="button" x-bind:class="darkMode ? 'bg-indigo-500' : 'bg-gray-200'" x-on:click="darkMode = !darkMode" class="relative inline-flex flex-shrink-0 h-6 mr-2 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" role="switch" aria-checked="false">
                         <span class="sr-only">Dark mode toggle</span>
                         <span x-bind:class="darkMode ? 'translate-x-5 bg-gray-700' : 'translate-x-0 bg-white dark:bg-gray-800'" class="relative inline-block w-5 h-5 transition duration-200 ease-in-out transform rounded-full shadow pointer-events-none ring-0">
@@ -363,10 +135,10 @@
                         </span>
                     </button>
 
-                    <div class="hidden lg:mx-2 lg:flex">
+                    <div class="lg:mx-2 lg:flex">
                         <livewire:currency-switcher />
                     </div>
-                    <div class="hidden lg:mx-2 lg:flex">
+                    <div class="lg:mx-2 lg:flex">
                         <livewire:language-switcher />
 
                         <!-- <a href="#" class="flex items-center text-gray-700 hover:text-gray-800">
