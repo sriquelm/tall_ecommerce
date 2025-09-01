@@ -46,14 +46,14 @@ class PaymentController extends Controller
     {
         $token = $request->get('token_ws');
         if (!$token) {
-            return view('shop.checkout-cencel');
+            return view('shop.checkout-cancel');
         }
 
         $webpay = $this->transbankService->makeTransaction();
         try {
             $response = $webpay->commit($token);
         } catch (\Throwable $e) {
-            return view('shop.checkout-cencel');
+            return view('shop.checkout-cancel');
         }
 
         // Update transaction & order

@@ -45,11 +45,11 @@
                     <div class="flex items-end flex-1 mt-6">
                         <dl class="flex space-x-4 text-sm divide-x divide-gray-200 sm:space-x-6">
                             <div class="flex">
-                                <dt class="font-medium text-gray-900">{{__('Quantity')}}</dt>
+                                <dt class="font-medium text-gray-900">{{__lang('Quantity')}}</dt>
                                 <dd class="ml-2 text-gray-700">{{$orderItem->quantity}}</dd>
                             </div>
                             <div class="flex pl-4 sm:pl-6">
-                                <dt class="font-medium text-gray-900">{{__('Price')}}</dt>
+                                <dt class="font-medium text-gray-900">{{__lang('Price')}}</dt>
                                 <dd class="ml-2 text-gray-700">{{format_money($orderItem->unit_price, $order->currency)}}</dd>
                             </div>
                         </dl>

@@ -354,6 +354,56 @@
         "es": "Regístrate"
       }
     },
+    "footer": {
+      "shop": {
+        "es": "Tienda"
+      },
+      "company": {
+        "es": "Empresa"
+      },
+      "account": {
+        "es": "Cuenta"
+      },
+      "connect": {
+        "es": "Conectar"
+      },
+      "about_us": {
+        "es": "Acerca de nosotros"
+      },
+      "contact_us": {
+        "es": "Contáctanos"
+      },
+      "privacy_policy": {
+        "es": "Política de privacidad"
+      },
+      "terms_of_service": {
+        "es": "Términos de servicio"
+      },
+      "manage_account": {
+        "es": "Gestionar cuenta"
+      },
+      "profile": {
+        "es": "Perfil"
+      },
+      "orders": {
+        "es": "Pedidos"
+      },
+      "blog": {
+        "es": "Blog"
+      },
+      "all_products": {
+        "es": "Todos los productos"
+      },
+      "newsletter_signup": {
+        "es": "Suscríbete a nuestro boletín"
+      },
+      "newsletter_description": {
+        "es": "Las últimas ofertas y descuentos, enviados a tu bandeja de entrada semanalmente."
+      },
+      "copyright": {
+        "es": "Copyright © 2024 Tu Empresa, Inc."
+      }
+    },
     "search": {
       "search_products_placeholder": {
         "es": "Buscar productos..."
@@ -423,6 +473,260 @@
         "regards": {
           "es": "Saludos"
         }
+      }
+    },
+    "profile": {
+      "profile": {
+        "es": "Perfil"
+      },
+      "profile_information": {
+        "es": "Información del Perfil"
+      },
+      "update_profile_information": {
+        "es": "Actualiza la información del perfil y dirección de correo electrónico de tu cuenta."
+      },
+      "photo": {
+        "es": "Foto"
+      },
+      "select_new_photo": {
+        "es": "Seleccionar Nueva Foto"
+      },
+      "remove_photo": {
+        "es": "Eliminar Foto"
+      },
+      "name": {
+        "es": "Nombre"
+      },
+      "email": {
+        "es": "Correo Electrónico"
+      },
+      "email_unverified": {
+        "es": "Tu dirección de correo electrónico no está verificada."
+      },
+      "click_resend_verification": {
+        "es": "Haz clic aquí para reenviar el correo de verificación."
+      },
+      "verification_link_sent": {
+        "es": "Se ha enviado un nuevo enlace de verificación a tu dirección de correo electrónico."
+      },
+      "saved": {
+        "es": "Guardado."
+      },
+      "save": {
+        "es": "Guardar"
+      },
+      "update_password": {
+        "es": "Actualizar Contraseña"
+      },
+      "ensure_long_password": {
+        "es": "Asegúrate de que tu cuenta use una contraseña larga y aleatoria para mantenerse segura."
+      },
+      "current_password": {
+        "es": "Contraseña Actual"
+      },
+      "new_password": {
+        "es": "Nueva Contraseña"
+      },
+      "confirm_password": {
+        "es": "Confirmar Contraseña"
+      },
+      "two_factor_authentication": {
+        "es": "Autenticación de Dos Factores"
+      },
+      "add_additional_security": {
+        "es": "Agrega seguridad adicional a tu cuenta usando autenticación de dos factores."
+      },
+      "finish_enabling_2fa": {
+        "es": "Termina de habilitar la autenticación de dos factores."
+      },
+      "you_have_enabled_2fa": {
+        "es": "Has habilitado la autenticación de dos factores."
+      },
+      "you_have_not_enabled_2fa": {
+        "es": "No has habilitado la autenticación de dos factores."
+      },
+      "2fa_when_enabled": {
+        "es": "Cuando la autenticación de dos factores esté habilitada, se te pedirá un token seguro y aleatorio durante la autenticación. Puedes obtener este token desde la aplicación Google Authenticator de tu teléfono."
+      },
+      "to_finish_enabling_2fa": {
+        "es": "Para terminar de habilitar la autenticación de dos factores, escanea el siguiente código QR usando la aplicación de autenticación de tu teléfono o introduce la clave de configuración y proporciona el código OTP generado."
+      },
+      "2fa_now_enabled": {
+        "es": "La autenticación de dos factores está ahora habilitada. Escanea el siguiente código QR usando la aplicación de autenticación de tu teléfono o introduce la clave de configuración."
+      },
+      "setup_key": {
+        "es": "Clave de Configuración"
+      },
+      "code": {
+        "es": "Código"
+      },
+      "store_recovery_codes": {
+        "es": "Guarda estos códigos de recuperación en un gestor de contraseñas seguro. Se pueden usar para recuperar el acceso a tu cuenta si tu dispositivo de autenticación de dos factores se pierde."
+      },
+      "enable": {
+        "es": "Habilitar"
+      },
+      "regenerate_recovery_codes": {
+        "es": "Regenerar Códigos de Recuperación"
+      },
+      "confirm": {
+        "es": "Confirmar"
+      },
+      "show_recovery_codes": {
+        "es": "Mostrar Códigos de Recuperación"
+      },
+      "cancel": {
+        "es": "Cancelar"
+      },
+      "disable": {
+        "es": "Deshabilitar"
+      },
+      "browser_sessions": {
+        "es": "Sesiones del Navegador"
+      },
+      "manage_browser_sessions": {
+        "es": "Gestiona y cierra tus sesiones activas en otros navegadores y dispositivos."
+      },
+      "browser_sessions_description": {
+        "es": "Si es necesario, puedes cerrar sesión de todas tus otras sesiones del navegador en todos tus dispositivos. Algunas de tus sesiones recientes se enumeran a continuación; sin embargo, esta lista puede no ser exhaustiva. Si sientes que tu cuenta ha sido comprometida, también deberías actualizar tu contraseña."
+      },
+      "unknown": {
+        "es": "Desconocido"
+      },
+      "this_device": {
+        "es": "Este dispositivo"
+      },
+      "last_active": {
+        "es": "Última actividad"
+      },
+      "logout_other_sessions": {
+        "es": "Cerrar Otras Sesiones del Navegador"
+      },
+      "done": {
+        "es": "Listo."
+      },
+      "confirm_logout_password": {
+        "es": "Por favor introduce tu contraseña para confirmar que deseas cerrar sesión de tus otras sesiones del navegador en todos tus dispositivos."
+      },
+      "password": {
+        "es": "Contraseña"
+      },
+      "delete_account": {
+        "es": "Eliminar Cuenta"
+      },
+      "permanently_delete_account": {
+        "es": "Elimina permanentemente tu cuenta."
+      },
+      "delete_account_warning": {
+        "es": "Una vez que tu cuenta sea eliminada, todos sus recursos y datos serán eliminados permanentemente. Antes de eliminar tu cuenta, por favor descarga cualquier dato o información que desees conservar."
+      },
+      "confirm_delete_account": {
+        "es": "¿Estás seguro de que deseas eliminar tu cuenta? Una vez que tu cuenta sea eliminada, todos sus recursos y datos serán eliminados permanentemente. Por favor introduce tu contraseña para confirmar que deseas eliminar permanentemente tu cuenta."
+      }
+    },
+    "navigation": {
+      "dashboard": {
+        "es": "Panel de Control"
+      },
+      "select_locale": {
+        "es": "Seleccionar Idioma"
+      },
+      "manage_team": {
+        "es": "Gestionar Equipo"
+      },
+      "team_settings": {
+        "es": "Configuración del Equipo"
+      },
+      "create_new_team": {
+        "es": "Crear Nuevo Equipo"
+      },
+      "switch_teams": {
+        "es": "Cambiar Equipos"
+      },
+      "manage_account": {
+        "es": "Gestionar Cuenta"
+      },
+      "profile": {
+        "es": "Perfil"
+      },
+      "api_tokens": {
+        "es": "Tokens de API"
+      },
+      "log_out": {
+        "es": "Cerrar Sesión"
+      }
+    },
+    "auth": {
+      "name": {
+        "es": "Nombre"
+      },
+      "email": {
+        "es": "Correo Electrónico"
+      },
+      "password": {
+        "es": "Contraseña"
+      },
+      "confirm_password": {
+        "es": "Confirmar Contraseña"
+      },
+      "terms_agreement": {
+        "es": "Acepto los :terms_of_service y la :privacy_policy"
+      },
+      "terms_of_service": {
+        "es": "Términos de Servicio"
+      },
+      "privacy_policy": {
+        "es": "Política de Privacidad"
+      },
+      "already_registered": {
+        "es": "¿Ya tienes cuenta?"
+      },
+      "register": {
+        "es": "Registrarse"
+      },
+      "login": {
+        "es": "Iniciar Sesión"
+      },
+      "forgot_password": {
+        "es": "¿Olvidaste tu contraseña?"
+      },
+      "remember_me": {
+        "es": "Recuérdame"
+      },
+      "forgot_password_text": {
+        "es": "¿Olvidaste tu contraseña? No hay problema. Simplemente haznos saber tu dirección de correo electrónico y te enviaremos un enlace de restablecimiento de contraseña que te permitirá elegir una nueva."
+      },
+      "email_password_reset_link": {
+        "es": "Enviar Enlace de Restablecimiento"
+      }
+    },
+    "payment": {
+      "payment_canceled": {
+        "es": "Pago Cancelado"
+      },
+      "payment_canceled_message": {
+        "es": "Tu pago ha sido cancelado y no se ha procesado ningún cargo a tu tarjeta."
+      },
+      "payment_canceled_help": {
+        "es": "Puedes intentar realizar el pago nuevamente o contactar con nuestro soporte si necesitas ayuda."
+      },
+      "retry_payment": {
+        "es": "Reintentar Pago"
+      },
+      "go_home": {
+        "es": "Ir al Inicio"
+      },
+      "need_help": {
+        "es": "¿Necesitas Ayuda?"
+      },
+      "contact_support": {
+        "es": "Contactar Soporte"
+      },
+      "call_support": {
+        "es": "Llamar Soporte"
+      },
+      "check_faq": {
+        "es": "Consultar FAQ"
       }
     }
   }

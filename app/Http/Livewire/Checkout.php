@@ -120,7 +120,7 @@ class Checkout extends Component
 
     protected function messages()
     {
-        return ['promo' => __('validation.promo')];
+        return ['promo' => __lang('validation.promo')];
     }
 
     public function updated($name)
@@ -262,7 +262,7 @@ class Checkout extends Component
             $this->emit('couponApplyEvent');
         } else {
             Notification::make()
-                ->title(__('cart.promo_not_valid'))
+                ->title(__lang('cart.promo_not_valid'))
                 ->success()
                 ->send();
         }
@@ -361,7 +361,7 @@ class Checkout extends Component
                     : $customer->defaultAddress;
                 if (!$address) {
                     throw \Illuminate\Validation\ValidationException::withMessages([
-                        'selected_address' => __('validation.required'),
+                        'selected_address' => __lang('validation.required'),
                     ]);
                 }
             }

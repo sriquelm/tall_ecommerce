@@ -16,7 +16,7 @@ class HomeController extends Controller
         // session()->flash('flash.banner', 'Get a huge discount of up to 80% on all items!');
         // session()->flash('flash.bannerStyle', 'warning');
         // \App\Models\Currency::find(1)->update(['default', 1]);
-        $products = Product::with(['featuredImage', 'variant', 'variant.options'])->paginate(15);
+        $products = Product::with(['featuredImage', 'variant', 'variant.options'])->paginate(8);
         // dd($products[0]->featuredImage->getResponsiveImageUrls());
         // dd(asset('images/placeholder-image.webp'));
         return view('home', compact('products'));    

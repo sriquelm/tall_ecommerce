@@ -5,79 +5,57 @@
             <div class="grid grid-cols-2 gap-8 xl:col-span-2">
                 <div class="space-y-16 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                     <div>
-                        <h3 class="font-medium text-gray-900 dark:text-white">Shop</h3>
+                        <h3 class="font-medium text-gray-900 dark:text-white">{{ __lang('footer.shop') }}</h3>
                         <ul role="list" class="mt-6 space-y-6">
-
+                            
                             <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Bags</a>
+                                <a href="{{ route('products.index') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">{{ __lang('footer.all_products') }}</a>
                             </li>
-
                             <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Tees</a>
+                                <a href="{{ route('products.category', 'tienda') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Tienda</a>
                             </li>
-
                             <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Objects</a>
+                                <a href="{{ route('products.category', 'libros') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Libros</a>
                             </li>
-
                             <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Home Goods</a>
+                                <a href="{{ route('products.category', 'recorridos') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Recorridos</a>
                             </li>
-
-                            <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Accessories</a>
-                            </li>
-
                         </ul>
                     </div>
                     <div>
-                        <h3 class="font-medium text-gray-900 dark:text-white">Company</h3>
+                        <h3 class="font-medium text-gray-900 dark:text-white">{{ __lang('footer.company') }}</h3>
                         <ul role="list" class="mt-6 space-y-6">
-
                             <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Who we are</a>
+                                <a href="{{ route('blog.index') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">{{ __lang('footer.blog') }}</a>
                             </li>
-
                             <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Sustainability</a>
+                                <a href="{{ route('terms.show') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">{{ __lang('footer.terms_of_service') }}</a>
                             </li>
-
                             <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Press</a>
+                                <a href="{{ route('policy.show') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">{{ __lang('footer.privacy_policy') }}</a>
                             </li>
-
-                            <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Careers</a>
-                            </li>
-
-                            <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Terms &amp; Conditions</a>
-                            </li>
-
-                            <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Privacy</a>
-                            </li>
-
                         </ul>
                     </div>
                 </div>
                 <div class="space-y-16 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                     <div>
-                        <h3 class="font-medium text-gray-900 dark:text-white">Account</h3>
+                        <h3 class="font-medium text-gray-900 dark:text-white">{{ __lang('footer.account') }}</h3>
                         <ul role="list" class="mt-6 space-y-6">
-
-                            <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Manage Account</a>
-                            </li>
-
-                            <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Returns &amp; Exchanges</a>
-                            </li>
-
-                            <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Redeem a Gift Card</a>
-                            </li>
-
+                            @auth
+                                <li class="text-sm">
+                                    <a href="{{ route('profile.show') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">{{ __lang('footer.profile') }}</a>
+                                </li>
+                                <li class="text-sm">
+                                    <a href="{{ route('dashboard') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">{{ __lang('footer.orders') }}</a>
+                                </li>
+                            @else
+                                <li class="text-sm">
+                                    <a href="{{ route('login') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">{{ __lang('auth.login') }}</a>
+                                </li>
+                                <li class="text-sm">
+                                    <a href="{{ route('register') }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">{{ __lang('auth.register') }}</a>
+                                </li>
+                            @endauth
                         </ul>
                     </div>
                     <div>
@@ -97,7 +75,7 @@
                             </li>
 
                             <li class="text-sm">
-                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Pinterest</a>
+                                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">Facebook</a>
                             </li>
 
                         </ul>
@@ -105,15 +83,14 @@
                 </div>
             </div>
             <div class="mt-16 md:mt-16 xl:mt-0">
-            <img src="{{asset('images/footer-sign.avif')}}" alt="Icon">
-                <h3 class="mt-6 font-medium text-gray-900 dark:text-white">Sign up for our newsletter</h3>
-                <p class="mt-2 text-sm text-gray-500">The latest deals and savings, sent to your inbox weekly.</p>
+                <h3 class="font-medium text-gray-900 dark:text-white">{{ __lang('footer.newsletter_signup') }}</h3>
+                <p class="mt-2 text-sm text-gray-500">{{ __lang('footer.newsletter_description') }}</p>
                 <livewire:subscription-form />
             </div>
         </div>
 
         <div class="py-10 border-t border-gray-200">
-            <p class="text-sm text-gray-500">Copyright © 2021 Your Company, Inc.</p>
+            <p class="text-sm text-gray-500">{{ __lang('footer.copyright') }}</p>
         </div>
     </div>
 </footer>

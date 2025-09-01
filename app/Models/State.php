@@ -9,7 +9,7 @@ class State extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'active'];
+    protected $fillable = ['name', 'external_code', 'geographic_zone_code', 'active'];
 
     protected $casts = [
         'active' => 'boolean',

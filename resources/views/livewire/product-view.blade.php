@@ -60,14 +60,14 @@
                     <p class="mr-3 text-base font-bold text-gray-500 line-through">{{format_money($variant->sale_price)}}</p>
                     <p class="text-4xl font-bold tracking-tight text-indigo-600 dark:text-indigo-800">{{format_money($variant->final_price)}}</p>
                 </div>
-                <p class="text-xs text-gray-500">{{ __('product.local_tax_included') }}</p>
+                <p class="text-xs text-gray-500">{{ __lang('product.local_tax_included') }}</p>
             </div>
 
             @foreach ($variant_options as $key=>$options)
             @if ($key==='color')
             <!-- Color picker -->
             <div class="mt-6">
-                <h2 class="font-medium text-gray-900 dark:text-gray-100">{{__('common.color')}}</h2>
+                <h2 class="font-medium text-gray-900 dark:text-gray-100">{{__lang('common.color')}}</h2>
                 <fieldset x-data="{color:@entangle('color').defer}" class="mt-2">
                     <legend class="sr-only"> Choose a color </legend>
                     <div class="flex items-center space-x-3">
@@ -87,8 +87,8 @@
             <!-- Size picker -->
             <div class="mt-6">
                 <div class="flex items-center">
-                    <h2 class="font-medium text-gray-900 dark:text-gray-100">{{__('common.size')}}</h2>
-                    <a href="#" class="ml-2 text-sm font-medium text-indigo-600 dark:text-indigo-200 hover:dark:text-indigo-300 hover:text-indigo-500">({{__('product.sizing_info')}})</a>
+                    <h2 class="font-medium text-gray-900 dark:text-gray-100">{{__lang('common.size')}}</h2>
+                    <a href="#" class="ml-2 text-sm font-medium text-indigo-600 dark:text-indigo-200 hover:dark:text-indigo-300 hover:text-indigo-500">({{__lang('product.sizing_info')}})</a>
                 </div>
 
                 <fieldset x-data="{size:@entangle('size').defer}" class="mt-2">
@@ -107,7 +107,7 @@
             @endforeach
 
             <div class="flex mt-6">
-                <button type="submit" @click.prevent="Livewire.emit('addToCart', '{{$variant->id}}')" class="flex items-center justify-center flex-1 max-w-xs px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full">{{__('product.add_to_cart')}}</button>
+                <button type="submit" @click.prevent="Livewire.emit('addToCart', '{{$variant->id}}')" class="flex items-center justify-center flex-1 max-w-xs px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full">{{__lang('product.add_to_cart')}}</button>
             </div>
         </div>
     </div>
@@ -115,7 +115,7 @@
     <!-- Descriptions -->
     <section aria-labelledby="product-description">
         <div class="mt-10">
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-50">{{__('product.description')}}</h2>
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-50">{{__lang('product.description')}}</h2>
             <div class="mt-4 text-base prose-sm prose text-gray-600 dark:text-gray-100">
                 <p>{!! $product->description !!}</p>
             </div>

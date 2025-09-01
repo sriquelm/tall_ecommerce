@@ -70,15 +70,7 @@
                     </div>
                 </div>
 
-                <div class="px-4 py-6 space-y-6 border-t border-gray-200 hidden">
-                    <!-- Currency and Language Switchers -->
-                    <div class="flow-root">
-                        <livewire:currency-switcher />
-                    </div>
-                    <div class="flow-root">
-                        <livewire:language-switcher />
-                    </div>
-                </div>
+                
             </div>
 
         </div>
@@ -135,18 +127,8 @@
                         </span>
                     </button>
 
-                    <div class="lg:mx-2 lg:flex">
-                        <livewire:currency-switcher />
-                    </div>
-                    <div class="lg:mx-2 lg:flex">
-                        <livewire:language-switcher />
-
-                        <!-- <a href="#" class="flex items-center text-gray-700 hover:text-gray-800">
-                                        <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" class="flex-shrink-0 block w-5 h-auto">
-                                        <span class="block ml-3 text-sm font-medium dark:text-white">CAD</span>
-                                        <span class="sr-only">, change currency</span>
-                                    </a> -->
-                    </div>
+                    
+                    
                 </div>
 
                     <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:ml-6">
@@ -173,11 +155,11 @@
                             <x-slot name="content">
                                 <!-- Account Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Manage Account') }}
+                                    {{ __lang('navigation.manage_account') }}
                                 </div>
 
                                 <x-dropdown-link href="{{ route('profile.show') }}">
-                                    {{ __('Profile') }}
+                                    {{ __lang('navigation.profile') }}
                                 </x-dropdown-link>
 
 
@@ -188,7 +170,7 @@
                                     @csrf
 
                                     <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                                        {{ __('Log Out') }}
+                                        {{ __lang('navigation.log_out') }}
                                     </x-dropdown-link>
                                 </form>
                             </x-slot>

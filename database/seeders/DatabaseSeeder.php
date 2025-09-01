@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            LanguageSeeder::class,
             CategorySeeder::class,
             CurrencySeeder::class,
             ProductSeeder::class,

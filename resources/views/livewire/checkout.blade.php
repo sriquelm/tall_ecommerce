@@ -1,18 +1,18 @@
 <div class="max-w-2xl px-4 pt-12 pb-24 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="block mb-10 text-3xl font-bold leading-8 tracking-tight text-center text-gray-900 dark:text-white sm:text-4xl">{{__('cart.checkout')}}</h2>
+    <h2 class="block mb-10 text-3xl font-bold leading-8 tracking-tight text-center text-gray-900 dark:text-white sm:text-4xl">{{__lang('cart.checkout')}}</h2>
 
     @if($total>0)
     <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16" @submit.prevent>
         <div>
             <div>
-                <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{__('checkout.contact_info')}}</h2>
+                <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{__lang('checkout.contact_info')}}</h2>
 
                 <div class="mt-4">
                     @auth
-                    <p class="dark:text-gray-200">{{__('form.email')}}: {{$email}}</p>
-                    <p class="dark:text-gray-200">{{__('form.phone')}}: {{$phone}}</p>
+                    <p class="dark:text-gray-200">{{__lang('form.email')}}: {{$email}}</p>
+                    <p class="dark:text-gray-200">{{__lang('form.phone')}}: {{$phone}}</p>
                     @else
-                    <x-form.input name="email" type="email" label="{{__('form.email')}}" autofocus autocomplete="email" value="{{auth()->check()?auth()->user()->email:''}}" />
+                    <x-form.input name="email" type="email" label="{{__lang('form.email')}}" autofocus autocomplete="email" value="{{auth()->check()?auth()->user()->email:''}}" />
                     
                     @if($showLoginSuggestion)
                     <div class="p-4 mt-3 bg-blue-50 border border-blue-200 rounded-md dark:bg-blue-900/20 dark:border-blue-700">
@@ -47,7 +47,7 @@
 
             <div class="pt-8 mt-8 border-t border-gray-200 dark:border-gray-400">
                 <div class="flex items-center justify-between">
-                    <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{__('checkout.shipping_info')}}</h2>
+                    <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{__lang('checkout.shipping_info')}}</h2>
                     @auth
                     <div class="flex items-center">
                         <button type="button" class="<?= $add_new_address ? 'bg-indigo-600' : 'bg-gray-200' ?> relative inline-flex flex-shrink-0 h-5 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-10 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" role="switch" aria-checked="{{$add_new_address?'true':'false'}}" aria-labelledby="add-new-address-label" @click="$wire.set('add_new_address', {{!$add_new_address}})">
@@ -84,41 +84,41 @@
                 </div>
                 @else
                 <div class="grid grid-cols-1 mt-4 gap-y-6 sm:grid-cols-2 sm:gap-x-4" x-effect="initPhoneInput()">
-                    <x-form.input name="firstname" label="{{__('form.firstname')}}" autocomplete="given-name" />
-                <x-form.input name="lastname" label="{{__('form.lastname')}}" autocomplete="family-name" />
+                    <x-form.input name="firstname" label="{{__lang('form.firstname')}}" autocomplete="given-name" />
+                <x-form.input name="lastname" label="{{__lang('form.lastname')}}" autocomplete="family-name" />
 
                 <div class="sm:col-span-2">
-                    <x-form.input name="address" label="{{__('form.address')}}" autocomplete="street-address" />
+                    <x-form.input name="address" label="{{__lang('form.address')}}" autocomplete="street-address" />
                 </div>
 
-                <x-form.dropdown name="state" label="{{__('form.state')}}" wire:model="state">
-                    <option value="">{{__('checkout.select_state')}}</option>
+                <x-form.dropdown name="state" label="{{__lang('form.state')}}" wire:model="state">
+                    <option value="">{{__lang('checkout.select_state')}}</option>
                     @foreach($states as $s)
                         <option value="{{$s->id}}">{{$s->name}}</option>
                     @endforeach
                 </x-form.dropdown>
 
-                <x-form.dropdown name="city" label="{{__('form.city')}}" wire:model="city">
-                    <option value="">{{__('checkout.select_city')}}</option>
+                <x-form.dropdown name="city" label="{{__lang('form.city')}}" wire:model="city">
+                    <option value="">{{__lang('checkout.select_city')}}</option>
                     @foreach($cities as $c)
                         <option value="{{$c->id}}">{{$c->name}}</option>
                     @endforeach
                 </x-form.dropdown>
                 <input type="hidden" name="country" wire:model="country" value="Chile">
-                <!--<x-form.dropdown name="country" label="{{__('form.country')}}">
-                    <option value="">{{__('checkout.select_country')}}</option>
+                <!--<x-form.dropdown name="country" label="{{__lang('form.country')}}">
+                    <option value="">{{__lang('checkout.select_country')}}</option>
                     @foreach (['Chile'] as $country)
                     <option value="{{$country}}">{{$country}}</option>
                     @endforeach
                 </x-form.dropdown>-->
 
                 <div class="sm:col-span-2">
-                    <x-form.input id="phone" name="phone" label="{{__('form.phone')}}" autocomplete="tel" />
+                    <x-form.input id="phone" name="phone" label="{{__lang('form.phone')}}" autocomplete="tel" />
                 </div>
                 @guest()
                 <div class="flex items-center my-4">
                     <input type="checkbox" id="checkbox" class="w-5 h-5 text-indigo-600 form-checkbox dark:text-indigo-400" wire:model.lazy="registration">
-                    <label for="checkbox" class="block ml-2 text-sm text-gray-900 dark:text-gray-200">{{__('checkout.keep_info')}}</label>
+                    <label for="checkbox" class="block ml-2 text-sm text-gray-900 dark:text-gray-200">{{__lang('checkout.keep_info')}}</label>
                 </div>
                 @endguest
             </div>
@@ -127,7 +127,7 @@
 
         <div class="pt-10 mt-10 border-t border-gray-200 dark:border-gray-400" x-data="{delivery:@entangle('delivery_method').defer }">
             <fieldset>
-                <legend class="text-lg font-medium text-gray-900 dark:text-white">{{__('checkout.delivery_method')}}</legend>
+                <legend class="text-lg font-medium text-gray-900 dark:text-white">{{__lang('checkout.delivery_method')}}</legend>
 
                 <div class="grid grid-cols-1 mt-4 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
                     @foreach ($delivery_charge as $key => $value)
@@ -136,7 +136,7 @@
                         <span class="flex flex-1">
                             <span class="flex flex-col">
                                 <span id="delivery-method-0-label" class="block text-sm font-medium text-gray-900 capitalize">{{ __("checkout.{$key}") }}</span>
-                                <span id="delivery-method-0-description-0" class="flex items-center mt-1 text-sm text-gray-500"> {{__('checkout.business_days', ['days'=>$value==5?'5-10':'2-4'])}}</span>
+                                <span id="delivery-method-0-description-0" class="flex items-center mt-1 text-sm text-gray-500"> {{__lang('checkout.business_days', ['days'=>$value==5?'5-10':'2-4'])}}</span>
                                 <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900">{{format_money($value)}}</span>
                             </span>
                         </span>
@@ -154,7 +154,7 @@
 
         <!-- Payment (fixed to Webpay) -->
         <div class="pt-10 mt-10 border-t border-gray-200 dark:border-gray-400">
-            <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{__('checkout.payment')}}</h2>
+            <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{__lang('checkout.payment')}}</h2>
 
             <div class="grid grid-cols-4 mt-6 gap-y-6 gap-x-4">
                 <div class="flex col-span-4 items-center">
@@ -176,7 +176,7 @@
                 this.execute=null;
                 this.args=[];
             }, execute:null, args:[] }">
-    <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ __('checkout.order_summary') }}</h2>
+    <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ __lang('checkout.order_summary') }}</h2>
 
 
     <div class="relative mt-4 border border-gray-200 rounded-lg shadow-sm dark:border-gray-400">
@@ -238,58 +238,58 @@
         </div>
         <dl class="px-4 py-6 space-y-6 border-t border-gray-200 dark:border-gray-400 sm:px-6">
             <div class="flex items-center justify-between">
-                <dt class="text-sm dark:text-white">{{__('cart.subtotal')}}</dt>
+                <dt class="text-sm dark:text-white">{{__lang('cart.subtotal')}}</dt>
                 <dd class="text-sm font-medium text-gray-900 dark:text-white">{{format_money($total)}}</dd>
             </div>
             @if ($couponApplied)
             <div class="flex items-center justify-between">
-                <dt class="text-sm dark:text-white">{{__('checkout.discount')}} ({{$coupon->value}}{{$coupon->type === 'percent' ? '%':'' }})</dt>
+                <dt class="text-sm dark:text-white">{{__lang('checkout.discount')}} ({{$coupon->value}}{{$coupon->type === 'percent' ? '%':'' }})</dt>
                 <dd class="text-sm font-medium text-gray-900 dark:text-white">{{format_money($discount)}}</dd>
             </div>
             @endif
             <div class="flex items-center justify-between">
-                <dt class="text-sm dark:text-white">{{__('checkout.shipping')}} ({{__("checkout.{$delivery_method}")}})</dt>
+                <dt class="text-sm dark:text-white">{{__lang('checkout.shipping')}} ({{__("checkout.{$delivery_method}")}})</dt>
                 <dd class="text-sm font-medium text-gray-900 dark:text-white">{{format_money($delivery_charge[$delivery_method])}}</dd>
             </div>
             <div class="flex items-center justify-between">
-                <dt class="text-sm dark:text-white">{{__('checkout.tax')}} ({{$taxrate}}%)</dt>
+                <dt class="text-sm dark:text-white">{{__lang('checkout.tax')}} ({{$taxrate}}%)</dt>
                 <dd class="text-sm font-medium text-gray-900 dark:text-white">{{format_money($taxable)}}</dd>
             </div>
             <div class="flex items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-400">
-                <dt class="text-base font-medium dark:text-white">{{__('cart.total')}}</dt>
+                <dt class="text-base font-medium dark:text-white">{{__lang('cart.total')}}</dt>
                 <dd class="text-base font-medium text-gray-900 dark:text-white">{{format_money($grand_total)}}</dd>
             </div>
         </dl>
 
         <div class="px-4 py-6 border-t border-gray-200 dark:border-gray-400 sm:px-6">
             @if ($couponApplied)
-            <x-base.small-alert wire:click="clearCoupon">{{$coupon->code}} {{__('cart.applied_successfully')}}</x-base.small-alert>
+            <x-base.small-alert wire:click="clearCoupon">{{$coupon->code}} {{__lang('cart.applied_successfully')}}</x-base.small-alert>
             @endif
             <div class="flex items-end w-full my-4 justify-items-stretch">
 
-                <x-form.input name="promo" label="{{__('cart.apply_promo')}}" placeholder="{{ __('cart.promocode') }}" />
+                <x-form.input name="promo" label="{{__lang('cart.apply_promo')}}" placeholder="{{ __lang('cart.promocode') }}" />
 
                 <div class="flex-shrink-0 mb-1 ml-2">
                     <x-base.loading-button wire:click="applyPromo" wire:loading.attr="disabled" loading="true">
-                        <span>{{__('cart.apply')}}</span>
+                        <span>{{__lang('cart.apply')}}</span>
                     </x-base.loading-button>
                     <!-- <button class="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2" wire:click="applyPromo">Apply</button> -->
                 </div>
             </div>
             <x-base.loading-button wire:click.prevent="submit" wire:loading.attr="disabled" loading="true" class="justify-center w-full px-4 py-3 text-base font-medium text-center text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 !ml-0">
-                <span> {{ __('checkout.confirm_order') }}</span>
+                <span> {{ __lang('checkout.confirm_order') }}</span>
             </x-base.loading-button>
         </div>
         <div x-cloak x-show="modalOpen" class="absolute inset-0 z-10 w-full h-full bg-black opacity-25"></div>
         <div x-cloak x-show="modalOpen" x-transition:enter="transition ease-in duration-200" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-out duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="absolute right-[33%] top-[10%] z-50 p-3 bg-white dark:bg-gray-200 rounded-lg max-w-[70%]" @click.away="closeConfirm()">
             <div class="mt-4 text-center md:mt-0 md:text-left">
-                <p class="font-bold">{{ __('common.are_you_sure') }}</p>
-                <p class="mt-1 text-sm text-gray-700">{{ __('cart.remove_product') }}</p>
+                <p class="font-bold">{{ __lang('common.are_you_sure') }}</p>
+                <p class="mt-1 text-sm text-gray-700">{{ __lang('cart.remove_product') }}</p>
             </div>
             <!-- </div> -->
             <div class="mt-4 text-center md:text-right md:flex md:justify-end">
-                <button class="block w-full px-2 py-1 text-sm font-semibold text-red-700 bg-red-200 rounded-lg md:inline-block md:w-auto md:ml-2 md:order-2" @click="execute instanceof Function?(execute(...args), closeConfirm()):$store.toasts.createToast('Something went Wrong, try Again', 'error')">{{ __('common.yes') }}</button>
-                <button class="block w-full px-2 py-1 mt-4 text-sm font-semibold bg-gray-200 rounded-lg md:inline-block md:w-auto md:mt-0 md:order-1" @click="closeConfirm()">{{ __('common.no') }}</button>
+                <button class="block w-full px-2 py-1 text-sm font-semibold text-red-700 bg-red-200 rounded-lg md:inline-block md:w-auto md:ml-2 md:order-2" @click="execute instanceof Function?(execute(...args), closeConfirm()):$store.toasts.createToast('Something went Wrong, try Again', 'error')">{{ __lang('common.yes') }}</button>
+                <button class="block w-full px-2 py-1 mt-4 text-sm font-semibold bg-gray-200 rounded-lg md:inline-block md:w-auto md:mt-0 md:order-1" @click="closeConfirm()">{{ __lang('common.no') }}</button>
             </div>
         </div>
     </div>
@@ -298,9 +298,9 @@
 @else
 <div class="px-4 py-2 mx-4 mt-4 mb-auto text-center border-2 border-dashed dark:border-gray-400">
     <img src="{{asset('images/cart-empty.svg')}}" class="w-64 h-64 mx-auto" alt="cart is empty" />
-    <a href="{{ url('/') }}" class="px-4 py-3 mx-auto my-8 text-base font-medium text-center text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">{{ __('checkout.continue_shopping') }}</a>
-    <p class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">{{__('cart.cart_empty')}}</p>
-    <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-300">{{__('cart.not_added_yet')}}</p>
+    <a href="{{ url('/') }}" class="px-4 py-3 mx-auto my-8 text-base font-medium text-center text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">{{ __lang('checkout.continue_shopping') }}</a>
+    <p class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">{{__lang('cart.cart_empty')}}</p>
+    <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-300">{{__lang('cart.not_added_yet')}}</p>
 </div>
 @endif
 

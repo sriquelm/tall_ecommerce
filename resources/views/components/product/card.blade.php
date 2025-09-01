@@ -1,6 +1,6 @@
 @props(['product'])
 <a href="{{route('product.view', $product->slug)}}" class="block bg-white rounded-lg c-card">
-    <div class="relative pb-48 ">
+    <div class="relative pb-72 ">
         @if($featuredImage = $product->featuredImage)
         <img class="absolute inset-0 object-cover w-full h-full" src="{{ $featuredImage->getUrl() }}" srcset="{{ $featuredImage->getSrcset() }}" sizes="(min-width: 768px) 50vw, 100vw" alt="{{ $featuredImage->name }}">
         @else

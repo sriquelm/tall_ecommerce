@@ -1,4 +1,51 @@
 <x-base-layout>
+    <style>
+        @keyframes slideCarouselSlow {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+        
+        @keyframes slideCarouselMedium {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+        
+        @keyframes slideCarouselFast {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+        
+        .carousel-container {
+            height: 600px;
+            overflow: hidden;
+            /*mask: linear-gradient(to top, transparent 0%, white 15%, white 85%, transparent 100%);
+            -webkit-mask: linear-gradient(to top, transparent 0%, white 15%, white 85%, transparent 100%);*/
+        }
+        
+        .carousel-column-1 {
+            animation: slideCarouselSlow 30s linear infinite;
+        }
+        
+        .carousel-column-2 {
+            animation: slideCarouselMedium 24s linear infinite;
+        }
+        
+        .carousel-column-3 {
+            animation: slideCarouselFast 18s linear infinite;
+        }
+    </style>
     <header class="relative overflow-hidden">
         <div class="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
             <div class="relative px-4 mx-auto max-w-7xl sm:static sm:px-6 lg:px-8">
@@ -8,37 +55,68 @@
                 </div>
                 <div>
                     <div class="mt-10">
-                        <!-- Decorative image grid -->
-                        <div aria-hidden="true" class="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl">
+                        <!-- Auto-sliding carousel -->
+                        <div aria-hidden="true" class="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl overflow-hidden">
                             <div class="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-                                <div class="flex items-center space-x-6 lg:space-x-8">
-                                    <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                        <div class="h-64 overflow-hidden rounded-lg w-44 sm:opacity-0 lg:opacity-100">
-                                            <img src="{{asset('images/london-wall-art-14.jpg')}}" alt="" class="object-cover object-center w-full h-full">
+                                <div class="carousel-container relative flex space-x-6 lg:space-x-8">
+                                    <!-- Column 1 - Slow animation -->
+                                    <div class="carousel-column-1">
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 sm:opacity-0 lg:opacity-100 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/london-wall-art-14.jpg')}}" alt="London Wall Art" class="object-cover object-center w-full h-full">
                                         </div>
-                                        <div class="h-64 overflow-hidden rounded-lg w-44">
-                                            <img src="{{asset('images/london-wall-art-13.jpg')}}" alt="" class="object-cover object-center w-full h-full">
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/london-wall-art-13.jpg')}}" alt="London Wall Art" class="object-cover object-center w-full h-full">
                                         </div>
-                                    </div>
-                                    <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                        <div class="h-64 overflow-hidden rounded-lg w-44">
-                                            <img src="{{asset('images/london-wall-art-17.jpg')}}" alt="" class="object-cover object-center w-full h-full">
+                                        <!-- Duplicate for loop -->
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 sm:opacity-0 lg:opacity-100 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/london-wall-art-14.jpg')}}" alt="London Wall Art" class="object-cover object-center w-full h-full">
                                         </div>
-                                        <div class="h-64 overflow-hidden rounded-lg w-44">
-                                            <img src="{{asset('images/whale-wall-art-white.jpg')}}" alt="" class="object-cover object-center w-full h-full">
-                                        </div>
-                                        <div class="h-64 overflow-hidden rounded-lg w-44">
-                                            <img src="{{asset('images/whale-wall-art-6.jpg')}}" alt="" class="object-cover object-center w-full h-full">
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/london-wall-art-13.jpg')}}" alt="London Wall Art" class="object-cover object-center w-full h-full">
                                         </div>
                                     </div>
-                                    <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                        <div class="h-64 overflow-hidden rounded-lg w-44">
-                                            <img src="{{asset('images/whale-wall-art-7.jpg')}}" alt="" class="object-cover object-center w-full h-full">
+                                    
+                                    <!-- Column 3 - Fast animation -->
+                                    <div class="carousel-column-3">
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/whale-wall-art-7.jpg')}}" alt="Whale Wall Art" class="object-cover object-center w-full h-full">
                                         </div>
-                                        <div class="h-64 overflow-hidden rounded-lg w-44">
-                                            <img src="{{asset('images/whale-wall-art-8.jpg')}}" alt="" class="object-cover object-center w-full h-full">
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/whale-wall-art-8.jpg')}}" alt="Whale Wall Art" class="object-cover object-center w-full h-full">
+                                        </div>
+                                        <!-- Duplicate for loop -->
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/whale-wall-art-7.jpg')}}" alt="Whale Wall Art" class="object-cover object-center w-full h-full">
+                                        </div>
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/whale-wall-art-8.jpg')}}" alt="Whale Wall Art" class="object-cover object-center w-full h-full">
                                         </div>
                                     </div>
+
+                                    <!-- Column 2 - Medium animation -->
+                                    <div class="carousel-column-2">
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/london-wall-art-17.jpg')}}" alt="London Wall Art" class="object-cover object-center w-full h-full">
+                                        </div>
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/whale-wall-art-white.jpg')}}" alt="Whale Wall Art" class="object-cover object-center w-full h-full">
+                                        </div>
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/whale-wall-art-6.jpg')}}" alt="Whale Wall Art" class="object-cover object-center w-full h-full">
+                                        </div>
+                                        <!-- Duplicate for loop -->
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/london-wall-art-17.jpg')}}" alt="London Wall Art" class="object-cover object-center w-full h-full">
+                                        </div>
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/whale-wall-art-white.jpg')}}" alt="Whale Wall Art" class="object-cover object-center w-full h-full">
+                                        </div>
+                                        <div class="h-64 overflow-hidden rounded-lg w-44 mb-6 lg:mb-8">
+                                            <img src="{{asset('images/whale-wall-art-6.jpg')}}" alt="Whale Wall Art" class="object-cover object-center w-full h-full">
+                                        </div>
+                                    </div>
+                                    
+
                                 </div>
                             </div>
                         </div>

@@ -3,27 +3,27 @@
     <div class="max-w-3xl px-4 pt-4 pb-12 mx-auto sm:px-6 lg:px-8">
         <div class="mt-6 mb-12">
             <h4 class="sr-only">Status</h4>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">{{__('order.preparing_to_ship')}} <time datetime="2021-03-24">{{$order?->expected_shipping}}</time></p>
+            <p class="text-sm font-medium text-gray-900 dark:text-white">{{__lang('order.preparing_to_ship')}} <time datetime="2021-03-24">{{$order?->expected_shipping}}</time></p>
             <div class="mt-6" aria-hidden="true">
                 <div class="overflow-hidden bg-gray-200 rounded-full">
                     <div class="h-2 bg-indigo-600 rounded-full" style="width: calc((1 * 2 + 1) / 8 * 100%)"></div>
                 </div>
                 <div class="hidden grid-cols-4 mt-6 text-sm font-medium text-gray-600 dark:text-gray-300 sm:grid">
-                    <div class="text-indigo-600 dark:text-indigo-300">{{__('order.order_placed')}}</div>
-                    <div class="text-center text-indigo-600 dark:text-indigo-300">{{__('order.processing')}}</div>
-                    <div class="text-center">{{__('order.shipped')}}</div>
-                    <div class="text-right">{{__('order.delivered')}}</div>
+                    <div class="text-indigo-600 dark:text-indigo-300">{{__lang('order.order_placed')}}</div>
+                    <div class="text-center text-indigo-600 dark:text-indigo-300">{{__lang('order.processing')}}</div>
+                    <div class="text-center">{{__lang('order.shipped')}}</div>
+                    <div class="text-right">{{__lang('order.delivered')}}</div>
                 </div>
             </div>
         </div>
 
         <div class="max-w-xl">
-            <h1 class="text-base font-medium text-indigo-600 dark:text-indigo-300">{{__('order.thank_you')}}</h1>
-            <p class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl dark:text-white">{{__('order.we_received_your_order')}}</p>
-            <p class="mt-2 text-base text-gray-500 dark:text-gray-200">{{__('order.order_shipped_message', ['order_number' => $order->order_number])}}</p>
+            <h1 class="text-base font-medium text-indigo-600 dark:text-indigo-300">{{__lang('order.thank_you')}}</h1>
+            <p class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl dark:text-white">{{__lang('order.we_received_your_order')}}</p>
+            <p class="mt-2 text-base text-gray-500 dark:text-gray-200">{{__lang('order.order_shipped_message', ['order_number' => $order->order_number])}}</p>
 
             <dl class="mt-8 text-sm font-medium">
-                <dt class="text-gray-900 dark:text-white">{{__('order.tracking_number')}}</dt>
+                <dt class="text-gray-900 dark:text-white">{{__lang('order.tracking_number')}}</dt>
                 <button x-clipboard.raw="{{ $order->tracking_id }}">
                     <dd class="mt-2 text-indigo-600 dark:text-indigo-300">{{$order->tracking_id}}</dd>
                 </button>
@@ -31,9 +31,9 @@
         </div>
 
         <div class="mt-10 border-t border-gray-200">
-            <h2 class="sr-only">{{__('order.your_order')}}</h2>
+            <h2 class="sr-only">{{__lang('order.your_order')}}</h2>
 
-            <h3 class="sr-only">{{__('order.items')}}</h3>
+            <h3 class="sr-only">{{__lang('order.items')}}</h3>
 
             <div class="flex py-10 space-x-6 border-b border-gray-200">
                 <ul role="list" class="-my-4 divide-y divide-gray-200">
@@ -60,7 +60,7 @@
                                 </p>
                             </div>
                             <div class="flex items-center justify-between flex-1 text-sm">
-                                <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{__('order.qty')}} {{ $item->quantity }}</p>
+                                <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{__lang('order.qty')}} {{ $item->quantity }}</p>
                             </div>
                         </div>
                     </li>
@@ -70,12 +70,12 @@
             </div>
 
             <div class="sm:ml-40 sm:pl-6">
-                <h3 class="sr-only">{{__('order.your_information')}}</h3>
+                <h3 class="sr-only">{{__lang('order.your_information')}}</h3>
 
-                <h4 class="sr-only">{{__('order.addresses')}}</h4>
+                <h4 class="sr-only">{{__lang('order.addresses')}}</h4>
                 <dl class="grid grid-cols-2 py-10 text-sm gap-x-6">
                     <div>
-                        <dt class="font-medium text-gray-900 dark:text-white">{{__('order.shipping_address')}}</dt>
+                        <dt class="font-medium text-gray-900 dark:text-white">{{__lang('order.shipping_address')}}</dt>
                         <dd class="mt-2 text-gray-700 dark:text-gray-200">
                             <address class="not-italic">
                                 <span class="block">{{ $order->customer->firstname }} {{ $order->customer->lastname }}</span>
@@ -85,57 +85,57 @@
                     </div>
                 </dl>
 
-                <h4 class="sr-only">{{__('order.payment')}}</h4>
+                <h4 class="sr-only">{{__lang('order.payment')}}</h4>
                 <dl class="grid grid-cols-2 py-10 text-sm border-t border-gray-200 gap-x-6">
                     <div>
-                        <dt class="font-medium text-gray-900 dark:text-white">{{__('order.payment_method')}}</dt>
+                        <dt class="font-medium text-gray-900 dark:text-white">{{__lang('order.payment_method')}}</dt>
                         <dd class="mt-2 text-gray-700 dark:text-gray-200">
                             <p>{{ ucfirst($order->payment_method) }}</p>
                         </dd>
                     </div>
                     <div>
-                        <dt class="font-medium text-gray-900 dark:text-white">{{__('order.shipping_method')}}</dt>
+                        <dt class="font-medium text-gray-900 dark:text-white">{{__lang('order.shipping_method')}}</dt>
                         <dd class="mt-2 text-gray-700 dark:text-gray-200">
                             <p>{{ ucfirst(str_replace('_', ' ', $order->shipping_method)) }}</p>
                             <p>
                                 @if($order->shipping_method == 'express')
-                                    {{__('order.express_delivery')}}
+                                    {{__lang('order.express_delivery')}}
                                 @elseif($order->shipping_method == 'store_pickup')
-                                    {{__('order.store_pickup')}}
+                                    {{__lang('order.store_pickup')}}
                                 @else
-                                    {{__('order.standard_delivery')}}
+                                    {{__lang('order.standard_delivery')}}
                                 @endif
                             </p>
                         </dd>
                     </div>
                 </dl>
 
-                <h3 class="sr-only">{{__('order.summary')}}</h3>
+                <h3 class="sr-only">{{__lang('order.summary')}}</h3>
 
                 <dl class="pt-10 space-y-6 text-sm border-t border-gray-200">
                     <div class="flex justify-between">
-                        <dt class="font-medium text-gray-900 dark:text-white">{{__('order.subtotal')}}</dt>
+                        <dt class="font-medium text-gray-900 dark:text-white">{{__lang('order.subtotal')}}</dt>
                         <dd class="text-gray-700 dark:text-gray-200">{{format_money($order->subtotal)}}</dd>
                     </div>
                     @if ($order->discount>0 && !is_null($order->coupon_id))
                     <div class="flex justify-between">
                         <dt class="flex font-medium text-gray-900 dark:text-white">
-                            {{__('order.discount')}}
+                            {{__lang('order.discount')}}
                             <span class="ml-2 rounded-full bg-gray-200 py-0.5 px-2 text-xs text-gray-600 dark:text-gray-300">{{$order->coupon->code}}</span>
                         </dt>
                         <dd class="text-gray-700 dark:text-gray-200">-{{format_money($order->discount)}} (50%)</dd>
                     </div>
                     @endif
                     <div class="flex justify-between">
-                        <dt class="font-medium text-gray-900 dark:text-white">{{__('order.tax')}} ({{$order->taxrate}}%)</dt>
+                        <dt class="font-medium text-gray-900 dark:text-white">{{__lang('order.tax')}} ({{$order->taxrate}}%)</dt>
                         <dd class="text-gray-700 dark:text-gray-200">{{format_money($order->taxable)}}</dd>
                     </div>
                     <div class="flex justify-between">
-                        <dt class="font-medium text-gray-900 dark:text-white">{{__('order.shipping')}}</dt>
+                        <dt class="font-medium text-gray-900 dark:text-white">{{__lang('order.shipping')}}</dt>
                         <dd class="text-gray-700 dark:text-gray-200">{{format_money($order->shipping_charge)}}</dd>
                     </div>
                     <div class="flex justify-between">
-                        <dt class="font-medium text-gray-900 dark:text-white">{{__('order.total')}}</dt>
+                        <dt class="font-medium text-gray-900 dark:text-white">{{__lang('order.total')}}</dt>
                         <dd class="text-gray-900 dark:text-white">{{format_money($order->total)}}</dd>
                     </div>
                 </dl>

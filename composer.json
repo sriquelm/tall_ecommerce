@@ -25,7 +25,6 @@
         "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-sluggable": "^3.4",
         "spatie/laravel-translatable": "^6.4",
-        "spatie/laravel-translation-loader": "^2.7",
         "stijnvanouplines/blade-country-flags": "^1.0",
         "transbank/transbank-sdk": "^5.1",
         "wire-elements/modal": "^1.0"

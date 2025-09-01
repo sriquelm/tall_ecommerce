@@ -27,7 +27,7 @@ class Cart extends Component
 
     protected function messages()
     {
-        return ['promo' => __('validation.promo')];
+        return ['promo' => __lang('validation.promo')];
     }
 
     public function currencyUpdated()
@@ -105,7 +105,7 @@ class Cart extends Component
             $this->emit('couponApplyEvent');
         } else {
             Notification::make()
-                ->title(__('cart.promo_not_valid'))
+                ->title(__lang('cart.promo_not_valid'))
                 ->success()
                 ->send();
         }
